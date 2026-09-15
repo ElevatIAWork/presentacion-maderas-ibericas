@@ -5,6 +5,14 @@ Preparada para la reunión con Jiban del 15 de septiembre de 2026.
 
 ## Cómo se usa
 
+El documento va en **tres partes**, para que no todo pese lo mismo:
+
+| Parte | Qué lleva | Para quién |
+|---|---|---|
+| 1 · La presentación | estado de los cuatro bots, la cartera, el reparto de tareas | es lo que se ve en la reunión |
+| 2 · Las 24 preguntas | agrupadas por proyecto, cada una con lo que necesitamos de respuesta | para que cada quien conteste lo suyo |
+| 3 · Anexo | los seis textos de Clara, las cuatro plantillas de Lucy, la investigación de la DGII, las columnas de la hoja de cobros | material de consulta, no de reunión |
+
 Se abre en cualquier navegador y **se lee de corrido, desplazándose**. No hay botones ni nada que
 pulsar, y no depende de JavaScript: si el script no cargara, la página se vería igual.
 
