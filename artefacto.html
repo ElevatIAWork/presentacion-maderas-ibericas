@@ -880,22 +880,20 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <div class="eyebrow">Lo nuevo &middot; c&oacute;mo lo har&iacute;amos</div>
   <span class="chip ok">Investigado y comprobado</span>
   <h2>Validar el RNC <span class="grad">contra la DGII</span></h2>
-  <p class="lead">La DGII <strong>no tiene API oficial</strong>, pero su portal se puede consultar y
-    ya lo probamos: <strong>medio segundo</strong>, y devuelve el nombre legal y el estado. Esto es
-    lo que pasar&iacute;a en cada llamada, en orden.</p>
+  <p class="lead">La DGII <strong>no tiene API oficial</strong>, pero su portal se puede consultar
+    y ya lo probamos. Esto es lo que pasar&iacute;a en cada llamada, en orden.</p>
   <div class="pasos">
     <div class="paso"><i>01</i><b>El cliente dicta su RNC o su c&eacute;dula</b>
       <span>Lucy se lo pide al inicio, como ya hace hoy.</span></div>
     <div class="paso"><i>02</i><b>Lo comprueba con una cuenta, al instante</b>
-      <span>El RNC y la c&eacute;dula llevan un <strong>d&iacute;gito de control</strong>. Si no
-      cuadra, Lucy lo pide otra vez <strong>en la misma llamada</strong>: ese es el error que de
-      verdad pasa por tel&eacute;fono.</span></div>
+      <span>El RNC y la c&eacute;dula llevan <strong>d&iacute;gito de control</strong>. Si no
+      cuadra, Lucy lo pide otra vez <strong>en la misma llamada</strong>.</span></div>
     <div class="paso"><i>03</i><b>Le pregunta a la DGII qui&eacute;n es</b>
       <span>Trae el <strong>nombre legal</strong> y si est&aacute; <strong>activo</strong>. Tarda
       0,5 s: Lucy sigue hablando mientras tanto y el cliente no nota la pausa.</span></div>
     <div class="paso"><i>04</i><b>Lo busca en ADM</b>
       <span>Con el mismo n&uacute;mero: <strong>&iquest;es cliente de Maderas, o llama por primera
-      vez?</strong> Son dos preguntas distintas y las dos hacen falta.</span></div>
+      vez?</strong> La DGII dice qui&eacute;n es; ADM, si ya le compran.</span></div>
     <div class="paso" style="border-color:rgba(46,230,168,.34)"><i style="color:var(--ok)">05</i>
       <b>Reci&eacute;n aqu&iacute; da precios</b>
       <span>No sale un precio antes de saber con qui&eacute;n se habla. Si en ADM manejan precios o
@@ -925,18 +923,16 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
         <li>La <strong>llamada</strong> a la que pertenece &mdash; que ya guarda transcripci&oacute;n,
           resumen y grabaci&oacute;n</li>
       </ul>
-      <p style="margin-top:9px">Queda consultable y exportable, y sirve de respaldo:
-      <strong>a qui&eacute;n se le dio qu&eacute; precio, y con qu&eacute; identificaci&oacute;n</strong>.</p>
+      <p style="margin-top:9px">Consultable y exportable: <strong>a qui&eacute;n se le dio
+      qu&eacute; precio, y con qu&eacute; identificaci&oacute;n</strong>.</p>
     </div>
   </div>
   <div class="nota" style="border-left-color:var(--parado)">
-    <b>Dos cosas que tienen que decidir ustedes:</b> qu&eacute; hace Lucy cuando el n&uacute;mero es
-    v&aacute;lido pero est&aacute; <b>suspendido o dado de baja</b> &mdash;son 383.000 casos en el
-    registro, no es raro&mdash; y qu&eacute; pasa con el <b>cliente particular sin RNC</b>, que no
-    est&aacute; en el registro y aun as&iacute; compra.
-    <b>Y el riesgo, dicho claro:</b> no es un servicio oficial, es su p&aacute;gina web. Si la DGII
-    la cambia, hay que rehacerlo. Por eso Lucy lleva debajo una copia descargada del registro: si la
-    DGII no responde, sigue contestando con ella.
+    <b>Deciden ustedes:</b> qu&eacute; hace Lucy con un n&uacute;mero v&aacute;lido pero
+    <b>suspendido o dado de baja</b> &mdash;383.000 casos, no es raro&mdash; y con el
+    <b>particular sin RNC</b>, que no est&aacute; en el registro y aun as&iacute; compra.
+    <b>El riesgo:</b> no es un servicio oficial, es su p&aacute;gina; si la cambian, hay que
+    rehacerlo. Por eso Lucy lleva debajo una copia descargada del registro para seguir contestando.
   </div>
 </section>
 
