@@ -246,6 +246,35 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 .columna.suya li::before{background:var(--espera)}
 .columna li b{color:var(--blanco);font-weight:600}
 @media (max-width:860px){.reparto{grid-template-columns:1fr}}
+
+.preg .pide{display:block;margin-top:7px;padding-top:6px;border-top:1px solid var(--linea);
+  font-size:clamp(10.8px,1.02vw,12.6px);line-height:1.45;font-weight:400;color:var(--tenue)}
+.preg .pide em{font-style:normal;font-weight:700;color:var(--azul);letter-spacing:.02em}
+.densa .preg .pide{margin-top:5px;padding-top:5px;font-size:clamp(10.4px,.98vw,12.1px)}
+
+.columnas-hoja{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;
+  margin-top:clamp(12px,1.6vw,20px)}
+.campo{background:var(--vidrio);border:1px solid var(--linea);border-radius:12px;
+  padding:clamp(9px,1vw,13px) clamp(11px,1.2vw,15px);display:flex;gap:11px;align-items:flex-start}
+.campo.clave{border-left:2px solid var(--parado)}
+.campo.normal{border-left:2px solid var(--azul)}
+.campo.opcional{border-left:2px solid var(--linea)}
+.campo code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:clamp(10.5px,1vw,12.5px);color:var(--blanco);background:rgba(255,255,255,.07);
+  padding:2px 7px;border-radius:5px;white-space:nowrap;flex:0 0 auto}
+.campo span{font-size:clamp(10.5px,1vw,12.4px);line-height:1.45;color:var(--tenue)}
+.campo span b{color:var(--blanco);font-weight:600}
+@media (max-width:860px){.columnas-hoja{grid-template-columns:1fr}}
+
+/* Ajuste fino: al darle a cada pregunta su linea de "lo que necesitamos", las
+   laminas con tres o cuatro crecieron. Se aprieta el interlineado antes que
+   recortar texto, porque lo que dicen ya esta en su minimo util. */
+.densa .preg{padding:clamp(7px,.78vw,10px) clamp(11px,1.25vw,15px)}
+.densa .pregs{gap:6px}
+.densa .preg .pide{margin-top:4px;padding-top:4px}
+.densa .cuerpo span{line-height:1.42}
+.columnas-hoja{gap:8px}
+.campo{padding:clamp(8px,.9vw,11px) clamp(10px,1.1vw,14px)}
 </style>
 </head>
 <body>
@@ -329,20 +358,20 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
     <label class="preg critica"><input type="checkbox" data-q="lw1"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Los 358 productos sin precio</b>
       <span>De los 1.612 del catálogo, unos 358 no tienen precio en ADM. Cuando un cliente
-      pregunta por esos, Lucy no puede darle un número. ¿Quién los carga y para cuándo?</span></span></label>
+      pregunta por esos, Lucy no puede darle un número. ¿Quién los carga y para cuándo?<b class="pide"><em>Lo que necesitamos:</em> un nombre y una fecha. Si son demasiados para cargarlos de golpe, díganos por dónde empezar — los más vendidos, por ejemplo.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="lw2"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Airtable, ¿se queda o se va?</b>
       <span>Esta depende de la anterior. <b style="display:inline">Si los pedidos no entran a
       ADM, Airtable deja de ser un puente y pasa a ser el único lugar donde viven</b> — y su cuenta
       está en plan de prueba. Si entran, podemos retirarlo o dejarlo solo como capa de
-      seguimiento. ¿Cuál de las dos?</span></span></label>
+      seguimiento. ¿Cuál de las dos?<b class="pide"><em>Lo que necesitamos:</em> que elijan una de las dos: se queda como capa de seguimiento, o lo retiramos cuando los pedidos entren a ADM.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="lw3"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Con el directorio que nos pasaron: ¿los pedidos a Ventas y los errores a Tecnología?</b>
       <span>El aviso está construido y apagado porque faltaba saber a dónde mandarlo. Con su
       directorio ya tiene destino: los pedidos al WhatsApp de <b style="display:inline">Ventas</b>
       —que las tres comparten— y los fallos técnicos a
       <b style="display:inline">Tecnología</b>. Solo necesitamos que nos digan que sí y lo
-      encendemos.</span></span></label>
+      encendemos.<b class="pide"><em>Lo que necesitamos:</em> un sí, y lo encendemos hoy. Si prefieren otros destinos, los dos números: uno para pedidos y otro para fallos técnicos.</b></span></span></label>
   </div>
 </section>
 
@@ -364,14 +393,14 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <b style="display:inline">escribir pedidos</b>—, y se puede prohibir la primera sin renunciar
       a la segunda. <b style="display:inline">Nuestra propuesta: el bot nunca crea clientes.</b>
       Si reconoce al cliente, el pedido entra bajo ese cliente; si no lo reconoce, no toca ADM y
-      deja el pedido en una bandeja para que una persona lo registre.</span></span></label>
+      deja el pedido en una bandeja para que una persona lo registre.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no a la propuesta — el bot nunca crea clientes, pero sí registra el pedido bajo un cliente que ya existe.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="lw-cli2"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Si vamos por ahí, tres datos que nos hacen falta</b>
       <span>¿Con qué dato buscamos al cliente — <b style="display:inline">RNC o teléfono</b>— y ese
       campo está completo en ADM? ¿<b style="display:inline">Quién registra</b> al cliente nuevo, y
       en cuánto tiempo, para que el pedido no se quede esperando? ¿O prefieren que todo lo no
       identificado caiga en un <b style="display:inline">cliente genérico de contado</b>, sin
-      duplicados pero sin trazabilidad?</span></span></label>
+      duplicados pero sin trazabilidad?<b class="pide"><em>Lo que necesitamos:</em> tres respuestas cortas: con qué campo buscamos, quién registra al cliente nuevo, y si lo no identificado va a un cliente de contado.</b></span></span></label>
   </div>
   <div class="nota">
     Conviene decirlo en la misma conversación para bajarle la tensión al tema:
@@ -420,12 +449,12 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <b style="display:inline;color:#ff9b9b">el mensaje se pierde</b> si el cliente no le escribió al
       WhatsApp del negocio en las últimas 24 horas. Una llamada no abre esa ventana. Se arregla
       aprobando <b style="display:inline">una plantilla de Meta para la ubicación</b>, igual que se
-      hizo con la cotización. ¿La aprobamos?</span></span></label>
+      hizo con la cotización. ¿La aprobamos?<b class="pide"><em>Lo que necesitamos:</em> un sí, y nosotros sometemos la plantilla a Meta. El trámite no les toca a ustedes.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="lv2"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>IP fija para la central</b>
       <span>Claro les da IP dinámica. Cada vez que cambia, el enlace con la central se rompe y
       Lucy deja de recibir llamadas hasta que alguien lo note. ¿Pueden pedirle a Claro una IP
-      fija?</span></span></label>
+      fija?<b class="pide"><em>Lo que necesitamos:</em> quién de su lado llama a Claro, y para cuándo. Nosotros no podemos pedirla por ustedes.</b></span></span></label>
   </div>
 </section>
 
@@ -448,7 +477,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
     <label class="preg media"><input type="checkbox" data-q="rc2"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>¿Le pedimos el nombre a todo el que llama?</b>
       <span>Hoy Lucy solo pide el nombre cuando hay cotización o pedido. Si alguien solo consulta,
-      el aviso al área sale sin nombre. ¿Que lo pida siempre?</span></span></label>
+      el aviso al área sale sin nombre. ¿Que lo pida siempre?<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si es sí, Lucy pide el nombre siempre; si es no, solo cuando haya cotización o pedido.</b></span></span></label>
   </div>
 </section>
 
@@ -542,7 +571,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       trámite completo, así que van los seis juntos.
       <b style="display:inline;color:var(--ok)">No hay que esperar al número nuevo:</b> las
       plantillas son de la cuenta, no del número. Si los aprueban esta semana, estarían listos
-      antes de que el número llegue.</span></span></label>
+      antes de que el número llegue.<b class="pide"><em>Lo que necesitamos:</em> que los lean y nos digan “aprobados” o qué cambiar. Con un correo suyo nos basta para someterlos.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="cl4"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Para escribir desde contabilidad@ necesitamos su acceso de envío</b>
       <span>No basta con poner esa dirección como remitente: si el correo sale de otro servidor sin
@@ -550,7 +579,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       de ese mismo buzón</b> queda resuelto y no hay que tocar nada de dominios. Si prefieren la
       alternativa que ustedes mismos plantean, <i>clara@finsawood.com</i>, nos parece más limpia
       —separa el cobro automático del buzón de contabilidad— y no cambia en nada que una persona
-      valide las respuestas.</span></span></label>
+      valide las respuestas.<b class="pide"><em>Lo que necesitamos:</em> que elijan la dirección, y le pidan a su técnico la cuenta de envío. Nosotros la configuramos.</b></span></span></label>
   </div>
 </section>
 
@@ -597,37 +626,32 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <h2>El estado de cuenta <span class="grad">en PDF</span></h2>
   <p class="lead">Las tres salen de su propio mensaje. Ninguna es un problema grave, pero las tres
     se resuelven fácil <strong>solo si las decidimos ahora</strong>.</p>
-  <div class="nota" style="margin-top:clamp(10px,1.4vw,16px)">
+  <div class="nota" style="margin-top:clamp(8px,1.1vw,13px)">
     <b>Lo que nos escribieron:</b> “te enviaremos <b>semanalmente</b> los estados de cuenta
     <b>en PDF</b>… cualquier respuesta del cliente podrá ser <b>revisada y validada por una
-    persona</b> antes de tomar cualquier acción.” Cada una de esas tres frases abre una de las
-    preguntas de abajo.
+    persona</b>.” Cada una de esas tres frases abre una pregunta de abajo.
   </div>
   <div class="pregs">
     <label class="preg critica"><input type="checkbox" data-q="cl2"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>El estado de cuenta: ¿nos lo pueden mandar también en Excel?</b>
       <span>El PDF es perfecto para que lo lea una persona, pero un bot lo lee
-      <b style="display:inline">adivinando</b>: se guía por dónde cae cada número en la página, y
-      el día que cambie el formato —una columna más, un salto de página— empieza a leer mal sin
-      avisar. Y leer mal aquí significa <b style="display:inline;color:#ff9b9b">reclamarle a un
-      cliente un monto que no es</b>. El mismo reporte exportado en Excel o CSV elimina el riesgo
-      entero, y en ADM suele ser el mismo clic. ¿Se puede?</span></span></label>
+      <b style="display:inline">adivinando</b> por dónde cae cada número en la página. El día que
+      cambie el formato empieza a leer mal sin avisar, y aquí leer mal significa
+      <b style="display:inline;color:#ff9b9b">reclamarle a un cliente un monto que no es</b>. En
+      Excel cada dato viene con su nombre y el riesgo desaparece.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si su sistema lo exporta, mándennos los dos: el PDF para ustedes y el Excel para el bot.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="cl2b"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Mejor todavía: que la lista diga solo <i>a quién</i>, no <i>cuánto</i></b>
-      <span>Con un archivo semanal, un cliente que pague el martes seguiría recibiendo avisos hasta
-      el archivo siguiente. <b style="display:inline;color:var(--ok)">Eso ya lo blindamos:</b> antes
-      de escribir, Clara comprueba en ADM que la factura siga viva, y si se pagó no cobra.
-      Llevándolo un paso más allá: si la lista trae <b style="display:inline">solo los clientes
-      autorizados</b> y los montos los lee Clara de ADM en vivo, ustedes siguen controlando el
-      alcance —que es lo que quieren— y las cifras nunca se quedan viejas.</span></span></label>
+      <span>Con un archivo semanal, quien pague el martes seguiría recibiendo avisos hasta el
+      siguiente. Si la lista trae <b style="display:inline">solo los clientes autorizados</b> y los
+      montos los lee Clara de ADM en vivo, ustedes controlan <b style="display:inline">a quién</b>
+      se le cobra y las cifras nunca se quedan viejas.<b class="pide"><em>Lo que necesitamos:</em> que elijan: el archivo con los montos dentro, o solo la lista de clientes autorizados y los montos los saca Clara de ADM.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="cl3"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Si el cliente contesta por correo, ¿cómo se lo decimos a Clara?</b>
-      <span>Por WhatsApp, Clara entiende sola la respuesta y se detiene. Pero
-      <b style="display:inline">los correos van a llegar a un buzón humano</b>, y ella no los ve:
-      si alguien escribe “le pago el 20” por correo, Clara le sigue insistiendo mientras su equipo
-      ya lo tiene resuelto. Hace falta una forma —una hoja compartida, un reenvío a una dirección
-      suya, lo que les sea más cómodo— de decirle <b style="display:inline">“con este cliente,
-      para”</b>. Es media hora de trabajo, pero hay que decidirlo.</span></span></label>
+      <span>Por WhatsApp, Clara entiende la respuesta y se detiene sola. Pero
+      <b style="display:inline">los correos llegan a un buzón humano</b> y ella no los ve: si un
+      cliente escribe “le pago el 20” por correo, Clara le sigue insistiendo mientras su equipo ya
+      lo tiene resuelto. Hace falta una vía para decirle <b style="display:inline">“con este
+      cliente, para”</b>.<b class="pide"><em>Lo que necesitamos:</em> que elijan cómo avisarnos: una hoja compartida, un reenvío a una dirección nuestra, o un botón en el reporte de Angelo.</b></span></span></label>
   </div>
 </section>
 
@@ -646,7 +670,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <b style="display:inline">Sugerimos arrancar solo con lo reciente</b> y abrir el resto
       después: es más fácil ampliar que apagar un incendio. Y si alguno no se debe tocar —un caso
       con abogados, un acuerdo ya negociado— basta con que no esté en la
-      hoja.</span></span></label>
+      hoja.<b class="pide"><em>Lo que necesitamos:</em> un límite, en años o en fecha. Algo como “desde enero de 2026” o “nada con más de un año”.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="cl8"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Los “días de atraso” del archivo, ¿desde cuándo se cuentan?</b>
       <span>Su documento decía “25 días después de la fecha de la factura”, pero en ADM hay términos
@@ -655,7 +679,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       Ahora el archivo traerá los <i>días de atraso</i> ya calculados:
       <b style="display:inline">¿desde qué fecha los cuentan?</b> Si ustedes cuentan desde la
       factura y nosotros desde el vencimiento, el mismo cliente cae en escalones distintos.
-      Si el archivo trae la <i>fecha de vencimiento</i>, Clara los calcula sola.</span></span></label>
+      Si el archivo trae la <i>fecha de vencimiento</i>, Clara los calcula sola.<b class="pide"><em>Lo que necesitamos:</em> desde qué fecha los cuentan. O más fácil todavía: que el archivo incluya la fecha de vencimiento y los calculamos nosotros.</b></span></span></label>
   </div>
 </section>
 
@@ -670,28 +694,24 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <span class="cuerpo"><b><span class="num"></span>Tras 3 avisos sin respuesta se escala a Angelo. ¿Y después?</b>
       <span><b style="display:inline">Nuestra recomendación: el bot se calla.</b> Si un humano tomó
       el caso, Clara debe apartarse; si no, el cliente sigue recibiendo mensajes automáticos
-      mientras Angelo negocia con él por teléfono.</span></span></label>
+      mientras Angelo negocia con él por teléfono.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no a que el bot se calle. Si prefieren que siga insistiendo, díganlo y lo dejamos así.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="cl10"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>¿Hay días propios en que prefieran que no escriba?</b>
-      <span>Los feriados dominicanos oficiales ya los respeta, incluidos los que la ley mueve al
-      lunes y los que dependen de Semana Santa. Faltan los suyos: cierre de mes, inventario, la
-      semana entre Navidad y Año Nuevo. ¿Y trabajan algún feriado oficial en que sí quieran
-      cobrar?</span></span></label>
+      <span>Los feriados oficiales ya los respeta. Faltan los suyos: cierre de mes, inventario,
+      la semana entre Navidad y Año Nuevo. ¿Y trabajan algún feriado en que sí quieran cobrar?<b class="pide"><em>Lo que necesitamos:</em> la lista de fechas. Y si no hay ninguna, díganlo también — con eso la pregunta queda cerrada.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="cl12"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>¿La hoja nueva traerá el teléfono y el correo de todos?</b>
       <span>Hoy, en ADM, <b style="display:inline">8 de las facturas cobrables no tienen ni
       teléfono ni correo</b>. A esos Clara no puede escribirles por ningún lado: los aparta en una
       lista para Angelo y ahí se quedan. Si al armar la hoja se pueden completar, entran al cobro
-      automático desde el primer día.</span></span></label>
+      automático desde el primer día.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si van a faltar datos, díganos quién los completa y cuándo.</b></span></span></label>
   </div>
   <div class="nota">
-    <b>Y seis cosas que ya están decididas</b>, con el criterio más prudente en cada una, por si
-    quieren corregirnos: un cliente con 8 facturas recibe <b>un solo mensaje</b> con la lista
-    dentro. Una promesa <b>pausa los avisos</b> hasta la fecha; la segunda promesa incumplida ya no
-    pausa. Si dice <b>“ya pagué”</b>, Clara deja de insistir y avisa a contabilidad. Clara
-    <b>no finge ser una persona</b> si le preguntan. <b>No le escribe a nadie con notas de crédito
-    sin aplicar</b>, porque ADM no dice a qué factura va cada una. Y respeta los
-    <b>feriados dominicanos</b> oficiales, incluidos los que la ley mueve al lunes.
+    <b>Y seis cosas ya decididas</b>, con el criterio más prudente, por si quieren corregirnos:
+    un cliente con 8 facturas recibe <b>un solo mensaje</b>; una promesa <b>pausa los avisos</b>
+    hasta la fecha y la segunda incumplida ya no; si dice <b>“ya pagué”</b> Clara deja de insistir;
+    <b>no finge ser una persona</b>; <b>no le escribe a quien tenga notas de crédito sin
+    aplicar</b>; y respeta los <b>feriados dominicanos</b>.
   </div>
 </section>
 
@@ -722,7 +742,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 </section>
 
 <!-- 15 -->
-<section class="slide">
+<section class="slide densa">
   <div class="eyebrow">Proyecto 4 · lo que necesitamos</div>
   <h2>Cotizador — <span class="grad"><span data-cuenta="co"></span> preguntas</span></h2>
   <div class="pregs">
@@ -731,24 +751,21 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <span>Para abrir los planos hace falta una herramienta con licencia comercial, y eso
       <b style="display:inline">lo resolvemos nosotros</b> antes de ponerlo en producción: o se
       licencia o usamos una alternativa. Pero si ustedes ya tienen una, el atajo es gratis y nos
-      ahorramos el gasto. Es la única razón por la que se los preguntamos.</span></span></label>
+      ahorramos el gasto. Es la única razón por la que se los preguntamos.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si es sí, cuál herramienta y cuántas licencias tienen.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="co2"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Nos falta la tabla de puertas</b>
       <span>En los planos las puertas vienen marcadas como <i>P01, P02, P03…</i> Necesitamos la
       tabla que dice qué artículo suyo es cada una: medida, material, precio. Sin eso el bot sabe
-      que hay 40 puertas pero no cuánto cuestan.</span></span></label>
+      que hay 40 puertas pero no cuánto cuestan.<b class="pide"><em>Lo que necesitamos:</em> el archivo, como lo tengan. Excel, PDF, o hasta una foto de la tabla nos sirve para empezar.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="co3"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>¿Los planos vienen en metros o en centímetros?</b>
-      <span>Los DWG no traen la unidad declarada de forma confiable, y equivocarse la multiplica o
-      la divide por cien. ¿Todos sus clientes entregan en la misma unidad, o hay que preguntarlo
-      plano por plano?</span></span></label>
+      <span>Los DWG no traen la unidad de forma confiable, y equivocarse la multiplica o la divide
+      por cien.<b class="pide"><em>Lo que necesitamos:</em> una de las dos. O “depende del cliente”, y entonces lo preguntamos plano por plano.</b></span></span></label>
     <label class="preg media"><input type="checkbox" data-q="co4"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>¿Qué hacemos con lo que se nombra pero no se dibuja?</b>
       <span>En el plano de prueba aparecen <b style="display:inline">52 baños mencionados sin
-      medidas</b>. ¿El bot los cotiza con una medida estándar suya, los lista aparte para que
-      ustedes los revisen, o los ignora?
-      <b style="display:inline">Nuestra recomendación: listarlos aparte</b>, marcados, para que
-      nadie firme una cotización creyendo que están incluidos.</span></span></label>
+      medidas</b>. <b style="display:inline">Recomendamos listarlos aparte</b>, marcados, para que
+      nadie firme una cotización creyendo que están incluidos.<b class="pide"><em>Lo que necesitamos:</em> que elijan una: medida estándar suya, lista aparte para que ustedes la revisen, o ignorarlo.</b></span></span></label>
   </div>
 </section>
 
@@ -783,7 +800,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <span class="cuerpo"><b><span class="num"></span>¿Quién aprueba qué, y en cuánto tiempo?</b>
       <span>Varias de estas respuestas no son técnicas: son decisiones de negocio sin dueño claro.
       Nos ayudaría salir de aquí con <b style="display:inline">un nombre y una fecha</b> por cada
-      pendiente. Es lo que convierte esta lista en avance real.</span></span></label>
+      pendiente. Es lo que convierte esta lista en avance real.<b class="pide"><em>Lo que necesitamos:</em> un nombre por cada pendiente de su columna, y una fecha aproximada. No hace falta que sea exacta.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="tr3"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>¿Qué día arrancamos Clara?</b>
       <span>Es la pregunta que le da sentido a todas las anteriores. Nuestra propuesta concreta:
@@ -791,7 +808,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       cartera de ADM cada mañana y no le escribe a nadie—, así verificamos los datos sin ningún
       riesgo. Y el <b style="display:inline">primer mensaje a un cliente real</b> sale el día que
       Meta apruebe los textos, arrancando con <b style="display:inline">15 clientes al día y solo
-      deuda reciente</b>. ¿Les sirve así, o prefieren otro ritmo?</span></span></label>
+      deuda reciente</b>. ¿Les sirve así, o prefieren otro ritmo?<b class="pide"><em>Lo que necesitamos:</em> una fecha. O un sí a nuestra propuesta: la lectura esta semana, y el primer mensaje cuando Meta apruebe los textos.</b></span></span></label>
   </div>
   <div class="nota">
     Una cosa que nos gustaría dejar dicha: <b>los cuatro bots ya están construidos</b>. Lo que
@@ -1019,6 +1036,50 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   </div>
 </section>
 
+<!-- hoja -->
+<section class="slide">
+  <div class="eyebrow">Para Esmerling · la hoja de cobros</div>
+  <h2>Exactamente <span class="grad">qué columnas necesita</span></h2>
+  <p class="lead">Para que no haya que adivinar. <strong>Los nombres no tienen que ser exactos</strong>
+    —el bot reconoce variantes— pero los datos sí tienen que estar.</p>
+  <div class="columnas-hoja">
+    <div class="campo clave"><code>relationship_id</code>
+      <span><b>La más importante.</b> El ID del cliente en ADM. En ADM hay
+      <b>174 RNC con dos fichas activas</b>: sin este ID no hay forma de saber a cuál ficha
+      corresponde la deuda.</span></div>
+    <div class="campo clave"><code>numero de factura</code>
+      <span>Es la llave de todo: con ella Clara comprueba contra ADM que la factura sigue viva
+      antes de reclamar, y la lista dentro del mensaje.</span></div>
+    <div class="campo normal"><code>cliente</code>
+      <span>El nombre, tal como debe aparecer en el mensaje que recibe.</span></div>
+    <div class="campo normal"><code>balance pendiente</code>
+      <span>El monto. <b>Neto de notas de crédito</b> si es posible; si no, Clara las descuenta
+      leyéndolas de ADM.</span></div>
+    <div class="campo normal"><code>telefono</code>
+      <span>Con este escribe por WhatsApp. Sin él, ese cliente solo recibe correo.</span></div>
+    <div class="campo normal"><code>correo electronico</code>
+      <span>Sin él, ese cliente solo recibe WhatsApp. <b>Hoy hay 8 facturas sin ninguno de los
+      dos</b> — a esos no se les puede cobrar.</span></div>
+    <div class="campo normal"><code>fecha de vencimiento</code>
+      <span>Con ella Clara calcula los días sola. <b>Es preferible a mandar los días ya
+      calculados</b>, porque así no hay que cuadrar desde cuándo cuenta cada uno.</span></div>
+    <div class="campo opcional"><code>dias de atraso</code>
+      <span>Solo si no pueden mandar la fecha de vencimiento. Y entonces necesitamos saber
+      <b>desde qué fecha los cuentan</b>.</span></div>
+    <div class="campo opcional"><code>rnc</code>
+      <span>De respaldo, por si sacar el <i>relationship_id</i> resulta complicado.</span></div>
+    <div class="campo opcional"><code>activo</code>
+      <span><b>SI</b> o <b>NO</b>. Permite sacar a un cliente del cobro sin borrar su fila y perder
+      el historial. Útil para casos con abogados o acuerdos ya negociados.</span></div>
+  </div>
+  <div class="nota">
+    <b>La moneda no hace falta:</b> Clara la lee de ADM factura por factura, así que una en dólares
+    se reclama en dólares. <b>Y si prefieren la versión corta:</b> con solo
+    <i>relationship_id</i> y <i>activo</i> basta — los montos, facturas y fechas los saca Clara de
+    ADM en vivo, y así nunca se quedan viejos. Esa es la opción que recomendamos.
+  </div>
+</section>
+
 <section class="slide">
   <div class="eyebrow">El reparto · qué le toca a quién</div>
   <span class="chip espera">Ninguno depende de programar más</span>
@@ -1048,7 +1109,8 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <ul>
         <li><b>El visto bueno a los seis textos</b> — solo leerlos y corregirnos el tono; someterlos
           a Meta lo hacemos nosotros</li>
-        <li><b>La hoja nueva de cobros</b>, de su programador. En Excel además del PDF si se puede</li>
+        <li><b>La hoja nueva de cobros</b>, de su programador — las columnas exactas están en la
+          lámina anterior. En Excel además del PDF si se puede</li>
         <li><b>La cuenta de envío de correo</b> — SMTP de <i>contabilidad@</i> o el buzón
           <i>clara@finsawood.com</i></li>
         <li><b>El número nuevo de WhatsApp</b> para cobros, y la <b>IP fija de Claro</b></li>
