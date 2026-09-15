@@ -876,78 +876,74 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       Unificarlos simplifica desde qué dirección escribe cada bot.</span></div>
   </div>
   <div class="nota" style="margin-top:clamp(10px,1.4vw,16px)">
-    <b>El detalle está en el anexo:</b> los tres caminos que evaluamos para validar el RNC contra
-    la DGII, con lo que cuesta cada uno y cuál recomendamos.
+    <b>El detalle está en el anexo:</b> cómo validaríamos el RNC contra la DGII paso a paso, qué
+    gana Maderas con eso y dónde quedaría el registro de cada consulta.
   </div>
 </section>
 
 <!-- esperando -->
 <!-- dgii -->
-<section class="slide apretada">
-  <div class="eyebrow">Lo nuevo · cómo lo haríamos</div>
+<section class="slide densa apretada">
+  <div class="eyebrow">Lo nuevo &middot; c&oacute;mo lo har&iacute;amos</div>
   <span class="chip ok">Investigado y comprobado</span>
   <h2>Validar el RNC <span class="grad">contra la DGII</span></h2>
-  <p class="lead">La DGII <strong>no tiene API oficial</strong>. Evaluamos tres caminos; este es el
-    que recomendamos, y no es una propuesta en el aire — lo probamos contra el portal real.</p>
-  <div class="rejilla c3">
-    <div class="opcion elegida">
-      <span class="sello">Recomendada</span>
-      <span class="letra">Lo que proponemos</span>
-      <h4>Dígito verificador + consulta en vivo</h4>
-      <p class="como">El cliente dicta su número. Lucy lo comprueba primero con una cuenta
-        matemática —el RNC y la cédula llevan dígito de control— y ahí mismo atrapa el número mal
-        dictado, que es lo que de verdad pasa por teléfono. Si pasa, consulta el portal de la DGII
-        en ese momento. Bajarse el registro y consultarlo local no sirve como fuente: la DGII lo
-        publica con atraso —hoy lleva <b style="display:inline">10 días</b>—, así que una empresa
-        registrada esta semana no aparecería.</p>
-      <p class="rotulo">A favor</p>
-      <ul class="juicio bien">
-        <li>Probado con un RNC real: <b style="color:var(--blanco)">0,5 segundos</b>, devolvió
-          nombre legal y estado, y no hay captcha</li>
-        <li>El dígito acierta el <b style="color:var(--blanco)">100%</b> sobre los 790.000
-          registros de la DGII</li>
-        <li>Gratis, y ve a una empresa registrada ayer</li>
-      </ul>
-      <p class="rotulo">En contra, y el respaldo</p>
-      <ul class="juicio mal">
-        <li>No es un servicio oficial: si la DGII cambia su página, hay que rehacerlo</li>
-      </ul>
-      <ul class="juicio bien">
-        <li>Si la DGII no responde, Lucy cae a la copia descargada del registro; y el dígito
-          funciona siempre, pase lo que pase</li>
-      </ul>
-    </div>
-    <div class="opcion">
-      <span class="letra">Alternativa · lo mínimo</span>
-      <h4>Solo el dígito verificador</h4>
-      <p class="como"><b>Cómo sería:</b> la cuenta matemática y nada más. No le pregunta a nadie.</p>
-      <p class="como"><b>Por qué no:</b> es la mitad de la recomendada, y como la consulta en vivo
-        tampoco cuesta nada, quedarse aquí no ahorra nada. Un número bien formado pero inventado
-        pasa sin problema.</p>
-    </div>
-    <div class="opcion">
-      <span class="letra">Alternativa · de pago</span>
-      <h4>Servicio externo de validación</h4>
-      <p class="como"><b>Cómo sería:</b> pagarle a un proveedor que revende los datos de la DGII y
-        preguntarle a él en cada llamada.</p>
-      <p class="como"><b>Por qué no:</b> cobro mensual por lo que la DGII ya da gratis, los datos de
-        sus clientes pasan por un tercero, y si su servicio se cae Lucy calla con el cliente al
-        teléfono. Queda como <b>plan B</b> si algún día no quieren mantener la consulta en vivo.</p>
-    </div>
+  <p class="lead">La DGII <strong>no tiene API oficial</strong>, pero su portal se puede consultar y
+    ya lo probamos: <strong>medio segundo</strong>, y devuelve el nombre legal y el estado. Esto es
+    lo que pasar&iacute;a en cada llamada, en orden.</p>
+  <div class="pasos">
+    <div class="paso"><i>01</i><b>El cliente dicta su RNC o su c&eacute;dula</b>
+      <span>Lucy se lo pide al inicio, como ya hace hoy.</span></div>
+    <div class="paso"><i>02</i><b>Lo comprueba con una cuenta, al instante</b>
+      <span>El RNC y la c&eacute;dula llevan un <strong>d&iacute;gito de control</strong>. Si no
+      cuadra, Lucy lo pide otra vez <strong>en la misma llamada</strong>: ese es el error que de
+      verdad pasa por tel&eacute;fono.</span></div>
+    <div class="paso"><i>03</i><b>Le pregunta a la DGII qui&eacute;n es</b>
+      <span>Trae el <strong>nombre legal</strong> y si est&aacute; <strong>activo</strong>. Tarda
+      0,5 s: Lucy sigue hablando mientras tanto y el cliente no nota la pausa.</span></div>
+    <div class="paso"><i>04</i><b>Lo busca en ADM</b>
+      <span>Con el mismo n&uacute;mero: <strong>&iquest;es cliente de Maderas, o llama por primera
+      vez?</strong> Son dos preguntas distintas y las dos hacen falta.</span></div>
+    <div class="paso" style="border-color:rgba(46,230,168,.34)"><i style="color:var(--ok)">05</i>
+      <b>Reci&eacute;n aqu&iacute; da precios</b>
+      <span>No sale un precio antes de saber con qui&eacute;n se habla. Si en ADM manejan precios o
+      condiciones distintas seg&uacute;n el cliente, <strong>esto es lo que hace que cada quien
+      reciba el suyo</strong>.</span></div>
   </div>
-  <div class="nota">
-    <b>Sobre “ADM valida el RNC”:</b> son dos preguntas distintas. <b>“¿Es cliente nuestro?”</b>
-    la contesta ADM y ya la usamos; <b>“¿este número existe y está activo?”</b> solo la contesta la
-    DGII, porque un cliente nuevo no está en ADM. <b>Pregúntenle a Esmerling</b> si su ADM trae
-    algún módulo que consulte la DGII: no aparece en su documentación, y si existe nos ahorra todo.
+  <div class="rejilla c2" style="margin-top:clamp(10px,1.4vw,16px)">
+    <div class="tarjeta" style="border-color:rgba(46,230,168,.3)"><h3>Lo que gana Maderas</h3>
+      <ul class="lista">
+        <li>El <strong>nombre legal correcto</strong> desde el primer contacto: la cotizaci&oacute;n
+          sale bien sin que nadie la corrija despu&eacute;s.</li>
+        <li>Nadie recibe precios sin identificarse.</li>
+        <li>El n&uacute;mero mal dictado se atrapa <strong>en la llamada</strong>, no tres d&iacute;as
+          despu&eacute;s en contabilidad.</li>
+        <li>Menos fichas duplicadas en ADM &mdash; hoy hay <strong>174 RNC con dos fichas
+          activas</strong>.</li>
+        <li><strong>Sin costo mensual.</strong> La DGII no cobra por esto.</li>
+      </ul>
+    </div>
+    <div class="tarjeta"><h3>D&oacute;nde queda el registro</h3>
+      <p>Cada consulta deja una fila en una <strong>tabla nuestra</strong>, no en ADM: as&iacute;
+      esto no queda esperando la decisi&oacute;n de si los bots escriben en ADM.</p>
+      <ul class="lista">
+        <li><strong>Fecha y hora</strong>, y el n&uacute;mero dictado</li>
+        <li><strong>Qu&eacute; respondi&oacute; la DGII</strong>: nombre legal y estado</li>
+        <li>Si <strong>coincidi&oacute; con una ficha de ADM</strong>, y con cu&aacute;l</li>
+        <li>La <strong>llamada</strong> a la que pertenece &mdash; que ya guarda transcripci&oacute;n,
+          resumen y grabaci&oacute;n</li>
+      </ul>
+      <p style="margin-top:9px">Queda consultable y exportable, y sirve de respaldo:
+      <strong>a qui&eacute;n se le dio qu&eacute; precio, y con qu&eacute; identificaci&oacute;n</strong>.</p>
+    </div>
   </div>
   <div class="nota" style="border-left-color:var(--parado)">
-    <b>Dos cosas que tienen que decidir ustedes:</b> qué hace Lucy cuando el RNC es válido pero está
-    <b>suspendido o dado de baja</b> —son 383.000 casos en el registro, no es raro— y qué pasa con
-    el cliente particular que no tiene RNC.
-    <b>Y un dato que encontramos de paso:</b> en ADM hay <b>174 RNC con dos fichas activas</b>. Ya
-    lo tenemos contemplado —cuando un RNC apunta a más de un cliente activo, el bot no adivina—,
-    pero es justo el problema de duplicados que su programador quiere evitar, y ya está ahí.
+    <b>Dos cosas que tienen que decidir ustedes:</b> qu&eacute; hace Lucy cuando el n&uacute;mero es
+    v&aacute;lido pero est&aacute; <b>suspendido o dado de baja</b> &mdash;son 383.000 casos en el
+    registro, no es raro&mdash; y qu&eacute; pasa con el <b>cliente particular sin RNC</b>, que no
+    est&aacute; en el registro y aun as&iacute; compra.
+    <b>Y el riesgo, dicho claro:</b> no es un servicio oficial, es su p&aacute;gina web. Si la DGII
+    la cambia, hay que rehacerlo. Por eso Lucy lleva debajo una copia descargada del registro: si la
+    DGII no responde, sigue contestando con ella.
   </div>
 </section>
 
