@@ -67,23 +67,13 @@ ul.lista li::before{content:'';position:absolute;left:0;top:.6em;width:10px;heig
   background:var(--grad);border-radius:2px}
 ul.lista li strong{color:var(--blanco);font-weight:600}
 
-/* --- Preguntas marcables: la presentación hace de acta de la reunión --- */
+/* --- Preguntas. Son texto para leer, no controles: nada que pulsar ni marcar.
+   Sin cursor de mano y sin resaltado al pasar por encima, para que nadie crea
+   que tiene que seleccionarlas. --- */
 .pregs{display:grid;gap:9px;margin-top:clamp(12px,1.8vw,20px)}
-.preg{display:flex;gap:13px;align-items:flex-start;cursor:pointer;
-  background:var(--vidrio);border:1px solid var(--linea);border-radius:13px;
-  padding:clamp(11px,1.2vw,16px) clamp(13px,1.4vw,18px);
-  transition:border-color .2s var(--curva),background .2s var(--curva),opacity .2s var(--curva)}
-.preg:hover{border-color:rgba(255,255,255,.26)}
-.preg input{position:absolute;opacity:0;width:0;height:0}
-.caja{flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:1.5px solid rgba(255,255,255,.3);
-  margin-top:1px;display:grid;place-items:center;transition:all .2s var(--curva)}
-.caja::after{content:'✓';font-size:12px;font-weight:800;color:var(--navy);opacity:0;transform:scale(.5);
-  transition:all .2s var(--curva)}
-.preg input:checked~.caja{background:var(--ok);border-color:var(--ok)}
-.preg input:checked~.caja::after{opacity:1;transform:none}
-.preg input:checked~.cuerpo{opacity:.42}
-.preg input:focus-visible~.caja{outline:2px solid var(--azul);outline-offset:3px}
-.cuerpo{transition:opacity .2s var(--curva)}
+.preg{background:var(--vidrio);border:1px solid var(--linea);border-radius:13px;
+  padding:clamp(11px,1.2vw,16px) clamp(13px,1.4vw,18px)}
+.cuerpo{display:block}
 .cuerpo b{display:block;font-size:clamp(13.5px,1.3vw,16.5px);font-weight:600;color:var(--blanco);
   line-height:1.4;margin-bottom:4px}
 .cuerpo span{font-size:clamp(11.5px,1.08vw,13.5px);line-height:1.55;color:var(--apagado);display:block}
@@ -123,7 +113,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 /* laminas con muchas preguntas: todo un punto mas apretado, para que quepan sin recortarse */
 .densa .lead{font-size:clamp(13px,1.3vw,16.5px);line-height:1.5}
 .densa .pregs{gap:7px;margin-top:clamp(10px,1.4vw,16px)}
-.densa .preg{padding:clamp(8px,.85vw,11px) clamp(12px,1.3vw,16px);gap:11px}
+.densa .preg{padding:clamp(8px,.85vw,11px) clamp(12px,1.3vw,16px)}
 .densa .cuerpo b{font-size:clamp(13px,1.22vw,15.5px);margin-bottom:3px}
 .densa .cuerpo span{font-size:clamp(11px,1.01vw,12.6px);line-height:1.44}
 .densa h2{margin-bottom:2px}
