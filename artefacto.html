@@ -469,11 +469,11 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <div class="pregs">
     <label class="preg critica"><input type="checkbox" data-q="lv1"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>La ubicación de la sucursal no le llega al cliente</b>
-      <span>Comprobado: cuando Lucy manda la dirección y el mapa tras un pedido por teléfono,
-      <b style="display:inline;color:#ff9b9b">el mensaje se pierde</b> si el cliente no le escribió al
-      WhatsApp del negocio en las últimas 24 horas. Una llamada no abre esa ventana. Se arregla
-      aprobando <b style="display:inline">una plantilla de Meta para la ubicación</b>, igual que se
-      hizo con la cotización. ¿La aprobamos?<b class="pide"><em>Lo que necesitamos:</em> un sí, y nosotros sometemos la plantilla a Meta. El trámite no les toca a ustedes.</b></span></span></label>
+      <span>Comprobado: cuando Lucy manda la dirección tras un pedido por teléfono,
+      <b style="display:inline;color:#ff9b9b">el mensaje se pierde</b> si el cliente no le escribió
+      al WhatsApp del negocio en las últimas 24 horas. Una llamada no abre esa ventana.
+      <b style="display:inline;color:var(--ok)">Ya lo resolvimos:</b> las cuatro plantillas están
+      redactadas y las cargamos nosotros en Meta — están en la lámina siguiente.<b class="pide"><em>Lo que necesitamos:</em> que lean los textos y nos digan si el tono está bien. El trámite no les toca.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="lv2"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>IP fija para la central</b>
       <span>Claro les da IP dinámica. Cada vez que cambia, el enlace con la central se rompe y
@@ -485,36 +485,37 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 <!-- 9 -->
 <!-- plantillas lucy -->
 <section class="slide densa">
-  <div class="eyebrow">Proyecto 2 · lo que hay que someter a Meta</div>
-  <h2>Las cuatro plantillas <span class="grad">de Lucy</span></h2>
-  <p class="lead">Fuera de las 24 horas desde que el cliente escribió, WhatsApp
-    <strong>solo deja enviar plantillas aprobadas</strong>. Una llamada no abre esa ventana — por
-    eso Lucy las necesita.</p>
+  <div class="eyebrow">Proyecto 2 · pendiente de nuestra parte</div>
+  <span class="chip espera">Lo hacemos nosotros</span>
+  <h2>Las cuatro plantillas <span class="grad">de Lucy Voz</span></h2>
+  <p class="lead">Fuera de las 24 horas, WhatsApp <strong>solo deja enviar plantillas
+    aprobadas</strong> — y una llamada no abre esa ventana. Ya están redactadas campo por campo y
+    <strong>el trámite corre por nuestra cuenta</strong>.</p>
   <div class="rejilla c2" style="align-items:start">
     <div>
       <div class="plantilla-fila">
-        <span class="pin" style="background:#2ee6a8"></span>
-        <div><b>Cotización en PDF</b><code>cotizaciones_maderas · ya aprobada</code>
-          <span>Al colgar, le llega la cotización que acaba de pedir por teléfono. Es la que
-          llevaba semanas trabada y ya funciona.</span></div>
+        <span class="pin" style="background:#08A0F7"></span>
+        <div><b>Pedido listo para recoger</b><code>pedido_listo_maderas · al cliente</code>
+          <span>Le avisa que ya puede pasar a buscarlo, con la sucursal y un botón
+          <i>Cómo llegar</i>. <b style="color:var(--blanco)">Es la que hoy no llega</b> si el
+          cliente nunca escribió por WhatsApp.</span></div>
+      </div>
+      <div class="plantilla-fila">
+        <span class="pin" style="background:#08A0F7"></span>
+        <div><b>Datos para retirar el pedido</b><code>retiro_sucursal_maderas · al cliente</code>
+          <span>Sale al colgar, justo después del PDF: confirma lo que pidió y dónde se retira.</span></div>
+      </div>
+      <div class="plantilla-fila">
+        <span class="pin" style="background:#D917FC"></span>
+        <div><b>Aviso de llamada al área</b><code>aviso_llamada_maderas · al personal</code>
+          <span>Al celular de ventas, contabilidad o quien corresponda: quién llamó, su teléfono,
+          el motivo y el resumen. Con un botón <i>Yo lo atiendo</i>.</span></div>
       </div>
       <div class="plantilla-fila">
         <span class="pin" style="background:#ffc857"></span>
-        <div><b>Recordatorio de cotización</b><code>recordatorio_cotizacion · existe, apagada</code>
-          <span>Si pasan unos días y la cotización no se convirtió en pedido, le da seguimiento sin
-          que nadie tenga que acordarse.</span></div>
-      </div>
-      <div class="plantilla-fila">
-        <span class="pin" style="background:#ff6b6b"></span>
-        <div><b>Ubicación de la sucursal</b><code>por crear</code>
-          <span>La dirección y el mapa de dónde recoger. <b style="color:var(--blanco)">Hoy se
-          pierde</b> si el cliente no escribió en las últimas 24 horas.</span></div>
-      </div>
-      <div class="plantilla-fila">
-        <span class="pin" style="background:#ff6b6b"></span>
-        <div><b>Pedido listo para recoger</b><code>por crear</code>
-          <span>Hoy sale como texto libre, así que solo llega a quien escribió hace poco. Como
-          plantilla, llega siempre.</span></div>
+        <div><b>Caso ya atendido</b><code>caso_tomado_maderas · al personal</code>
+          <span>Cuando alguien toca <i>Yo lo atiendo</i>, avisa a los demás del área para que no
+          llamen dos veces al mismo cliente.</span></div>
       </div>
     </div>
     <div class="wa">
@@ -523,28 +524,25 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
         <div><b>Maderas Ibéricas</b><span>Cuenta de empresa</span></div>
       </div>
       <div class="burbuja">
-        <p>Hola Juan, le saluda Lucy de Maderas Ibéricas.</p>
-        <p>Su pedido <b>No. 4218</b> ya está <b>LISTO</b> para recoger en la sucursal
-        <b>Santiago</b>.</p>
-        <div class="doc">
-          <svg width="20" height="24" viewBox="0 0 20 24" aria-hidden="true">
-            <path d="M2 1h10l6 6v16H2z" fill="#D5DBDC"/>
-            <path d="M12 1l6 6h-6z" fill="#9AA5A8"/>
-            <text x="10" y="18" font-size="6" font-weight="700" fill="#C0392B"
-              text-anchor="middle" font-family="sans-serif">PDF</text>
-          </svg>
-          <div><b>Pedido-4218.pdf</b><i>1 página · 84 kB</i></div>
-        </div>
-        <p>Horario: lunes a viernes de 8am a 5pm, sábados de 8am a 12pm. Le esperamos.</p>
+        <p><b>Su pedido ya está listo</b></p>
+        <p>Hola Marlon, le saluda Lucy de Maderas Ibéricas.</p>
+        <p>Su pedido No. 100482 ya está listo para recoger:<br>7 tableros Fibra Pan hidrófugo 18mm</p>
+        <p>Puede retirarlo en nuestra sucursal Av. Refinería 50, en Bajos de Haina.</p>
         <span class="hora">10:42 ✓✓</span>
       </div>
-      <p class="wa-pie">Así llega al teléfono del cliente, con el nombre verificado de la empresa.</p>
+      <div style="background:#1F2C33;border-radius:0 0 8px 8px;padding:8px;text-align:center;
+        max-width:90%;margin-left:auto;margin-top:2px">
+        <span style="color:#53BDEB;font-size:12px;font-weight:500">Cómo llegar</span>
+      </div>
+      <p class="wa-pie">Así llega al teléfono, con el botón que abre la sucursal en el mapa.</p>
     </div>
   </div>
   <div class="nota">
-    <b>El trámite lo hacemos nosotros</b>, igual que con las de cobros: de ustedes solo hace falta
-    el visto bueno del texto. Y van <b>junto con las seis de Clara</b> — un solo envío a Meta en
-    vez de dos trámites separados, que es lo que ahorra semanas.
+    <b>Las tres primeras se conectan solas</b> en cuanto Meta las apruebe, y ahí dejan de perderse
+    los avisos. <b>La cuarta espera a Esmerling:</b> hoy la respuesta del botón
+    <i>Yo lo atiendo</i> se va a Chatwoot, no a nosotros — hasta que él redirija ese aviso, el
+    botón se ve pero no dispara nada. La creamos igual, porque la aprobación tarda y así queda
+    lista.
   </div>
 </section>
 
@@ -731,8 +729,8 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
     <label class="preg critica"><input type="checkbox" data-q="cl2b"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Mejor todavía: que la lista diga solo <i>a quién</i>, no <i>cuánto</i></b>
       <span>Con un archivo semanal, quien pague el martes sigue recibiendo avisos hasta el
-      siguiente. Si la lista trae <b style="display:inline">solo los clientes autorizados</b> y los
-      montos los lee Clara de ADM en vivo, las cifras nunca se quedan viejas.<b class="pide"><em>Lo que necesitamos:</em> que elijan: el archivo con los montos dentro, o solo la lista de clientes autorizados y los montos los saca Clara de ADM.</b></span></span></label>
+      siguiente. Si la lista trae <b style="display:inline">solo los clientes autorizados</b> y
+      Clara lee los montos de ADM en vivo, las cifras nunca envejecen.<b class="pide"><em>Lo que necesitamos:</em> que elijan: el archivo con los montos dentro, o solo la lista de clientes autorizados y los montos los saca Clara de ADM.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="cl3"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Si el cliente contesta por correo, ¿cómo se lo decimos a Clara?</b>
       <span>Por WhatsApp, Clara entiende la respuesta y se detiene sola. Pero
@@ -1180,8 +1178,10 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <p class="sub">Trabajo nuestro, sin depender de nadie. Va esta semana y la próxima.</p>
       <ul>
         <li><b>Construir la validación del RNC</b> — con el camino que ustedes escojan</li>
-        <li><b>Someter los seis textos a Meta</b> en cuanto nos den el visto bueno — el trámite es
-          nuestro, tarda de días a semanas</li>
+        <li><b>Someter los seis textos de Clara a Meta</b> en cuanto nos den el visto bueno — el
+          trámite es nuestro</li>
+        <li><b>Crear las cuatro plantillas de Lucy Voz</b> — ya redactadas campo por campo, solo
+          falta cargarlas en Meta</li>
         <li><b>Medir el volumen de Lucy</b> antes del 1 de octubre, para darles el número exacto de
           lo que va a cambiar su factura de WhatsApp</li>
         <li><b>Dejar Lucy Voz observada una jornada completa</b>, para confirmar que el enlace con
