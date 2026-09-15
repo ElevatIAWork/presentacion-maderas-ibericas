@@ -162,3 +162,84 @@ podemos decir es el costo técnico de mantenerlos separados, y que se decida con
 
 La pregunta concreta: **¿desde qué dominio escriben los bots a los clientes?** Una sola respuesta
 resuelve Clara, Lucy y lo que venga después.
+
+---
+
+# Adenda del 15/09 — las dos opciones que planteó Maderas
+
+## ¿La copia local se actualiza sola? Sí, pero eso no basta
+
+La descarga se automatiza con un flujo semanal: **no hay trabajo manual**. El problema no es
+nuestro lado, es el de la DGII.
+
+Medido hoy, 15 de septiembre:
+
+```
+Last-Modified: Sat, 05 Sep 2026 06:57:26 GMT
+```
+
+**Diez días de atraso.** La DGII no publica ese archivo a diario, por mucho que algunas fuentes lo
+digan. Da igual cuántas veces lo bajemos: una empresa registrada esta semana **no está en él**.
+
+Eso descalifica la copia local como fuente principal. Sirve de respaldo, no de verdad.
+
+## Consultar la página oficial en vivo — **funciona, y es rápido**
+
+Lo probamos de punta a punta contra el portal real de la DGII.
+
+**El endpoint** (no el que sale en Google, sino el que la página usa por dentro):
+
+```
+https://dgii.gov.do/app/WebApps/ConsultasWeb2/ConsultasWeb/consultas/rnc.aspx
+```
+
+Es un formulario ASP.NET: hay que leer `__VIEWSTATE`, `__VIEWSTATEGENERATOR` y `__EVENTVALIDATION`
+de la página, y reenviarlos junto al número en `ctl00$cphMain$txtRNCCedula`.
+
+**Resultados reales:**
+
+| Consulta | Tiempo | Respuesta |
+|---|---|---|
+| `130962154` (empresa) | 0,41 s | IMPRESO SERVIC EIRL · **ACTIVO** |
+| `00300755329` (cédula) | 0,51 s | **SUSPENDIDO** |
+| `999999999` (inventado) | 0,47 s | sin resultado, correcto |
+
+Tres cosas que importan y que solo se saben probando:
+
+- **El `__VIEWSTATE` se reutiliza** entre consultas. O sea una sola ida y vuelta por pregunta, no
+  dos. Por eso baja de ~1,6 s a ~0,5 s.
+- **No hay captcha.** Hoy.
+- **Funciona igual con cédula que con RNC**, con el mismo campo.
+
+Medio segundo no se nota en una llamada: Lucy puede seguir hablando mientras consulta.
+
+**El riesgo real, dicho claro:** no es un servicio oficial. Es su página web. Si la DGII le cambia
+el formulario, le pone un captcha o limita las peticiones, **deja de funcionar de un día para
+otro**. Por eso conviene tener la copia descargada como respaldo: peor dato, pero siempre
+disponible.
+
+## Lo que ADM Cloud sí valida, y lo que no
+
+ADM guarda el RNC o la cédula de **sus propios clientes** — está en la tabla `clientes_adm`, con
+los campos `rnc` y `rnc_norm`, y Lucy ya lo usa para identificar a quien llama.
+
+Eso responde **"¿es cliente nuestro?"**. No responde **"¿este número existe ante la DGII?"**. Son
+preguntas distintas, y la segunda es la que hace falta para alguien que llama por primera vez.
+
+No encontramos en la documentación pública de ADM ningún módulo que consulte a la DGII.
+**Hay que preguntárselo a Esmerling:** si la versión que Maderas tiene lo incluye, nos ahorra todo
+lo demás.
+
+> **Dato encontrado de paso:** en ADM hay **174 RNC con dos fichas activas** — la misma empresa
+> registrada dos veces. Ya está contemplado en el código (si un RNC apunta a más de un cliente
+> activo, el bot no adivina), pero es exactamente el problema de duplicados que su programador
+> quiere evitar, y ya existe.
+
+## La recomendación, corregida
+
+1. **Dígito verificador** siempre — gratis, instantáneo, ataja el número mal dictado.
+2. **Consulta en vivo a la DGII** como fuente — 0,5 s, datos al minuto.
+3. **Copia descargada** como respaldo — para cuando la DGII no responda.
+
+Las tres capas juntas cuestan lo mismo que la más cara de ellas, porque ninguna tiene costo
+mensual.
