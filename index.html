@@ -227,6 +227,25 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 .opcion .mal li::before{content:'−';color:var(--parado)}
 .opcion .rotulo{font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
   color:var(--apagado);margin:3px 0 1px}
+
+.reparto{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,22px);
+  margin-top:clamp(12px,1.6vw,20px)}
+.columna{background:var(--vidrio);border:1px solid var(--linea);border-radius:14px;
+  padding:clamp(13px,1.4vw,19px)}
+.columna.nuestra{border-left:2px solid var(--azul)}
+.columna.suya{border-left:2px solid var(--espera)}
+.columna > h3{font-size:clamp(13.5px,1.3vw,16.5px);font-weight:700;margin:0 0 3px}
+.columna > p.sub{font-size:clamp(10.5px,1vw,12.2px);color:var(--apagado);margin:0 0 10px;
+  line-height:1.45}
+.columna ul{margin:0;display:grid;gap:6px}
+.columna li{list-style:none;font-size:clamp(11px,1.04vw,13px);line-height:1.45;
+  color:var(--tenue);padding-left:14px;position:relative}
+.columna li::before{content:'';position:absolute;left:0;top:.5em;width:5px;height:5px;
+  border-radius:50%}
+.columna.nuestra li::before{background:var(--azul)}
+.columna.suya li::before{background:var(--espera)}
+.columna li b{color:var(--blanco);font-weight:600}
+@media (max-width:860px){.reparto{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -999,37 +1018,41 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 </section>
 
 <section class="slide">
-  <div class="eyebrow">Lo que esperamos de ustedes</div>
-  <span class="chip espera">Nada de esto es programación</span>
-  <h2>Lo que estamos <span class="grad">esperando recibir</span></h2>
-  <p class="lead">No son decisiones ni opiniones: son <strong>archivos y accesos</strong>. Cada uno
-    tiene un proyecto detenido esperándolo.</p>
-  <div class="espera-lista">
-    <div class="espera-item"><b>Las modulaciones de cocina</b>
-      <span>“Te puedo compartir las diferentes modulaciones que nosotros utilizamos en las cocinas
-      para preparar el listado de módulos, bisagras, correderas y tiradores.” Sin eso el cotizador
-      cuenta las piezas pero no sabe cuáles son las suyas.</span>
-      <i>Cotizador</i></div>
-    <div class="espera-item"><b>La tabla de puertas</b>
-      <span>Qué artículo suyo es cada <i>P01, P02, P03…</i> del plano: medida, material y precio.
-      Es lo que convierte “hay 40 puertas” en una cotización.</span>
-      <i>Cotizador</i></div>
-    <div class="espera-item"><b>La hoja nueva de cobros</b>
-      <span>De su programador: los clientes que deben, con teléfono y correo. Preferiblemente en
-      Excel además del PDF.</span>
-      <i>Clara · bloqueante</i></div>
-    <div class="espera-item"><b>Los seis textos aprobados</b>
-      <span>Es el trámite más largo de todos: Meta tarda de días a semanas. Hasta que no estén,
-      Clara no le puede escribir a nadie.</span>
-      <i>Clara · bloqueante</i></div>
-    <div class="espera-item"><b>La cuenta de envío de correo</b>
-      <span>Una cuenta SMTP de <i>contabilidad@</i>, o el buzón <i>clara@finsawood.com</i> que
-      ustedes mismos propusieron.</span>
-      <i>Clara · bloqueante</i></div>
-    <div class="espera-item"><b>El número nuevo de WhatsApp</b>
-      <span>El dedicado a cobros, ya confirmado. Y la IP fija de Claro para que la central deje de
-      caerse sola.</span>
-      <i>Clara y Lucy Voz</i></div>
+  <div class="eyebrow">El reparto · qué le toca a quién</div>
+  <span class="chip espera">Ninguno depende de programar más</span>
+  <h2>Quién tiene <span class="grad">cada cosa</span></h2>
+  <p class="lead">Para que quede claro de lado y lado. Lo de la izquierda lo hacemos nosotros sin
+    pedirles nada; lo de la derecha tiene un proyecto detenido esperándolo.</p>
+  <div class="reparto">
+    <div class="columna nuestra">
+      <h3>Lo que nos toca a nosotros</h3>
+      <p class="sub">Trabajo nuestro, sin depender de nadie. Va esta semana y la próxima.</p>
+      <ul>
+        <li><b>Construir la validación del RNC</b> — con el camino que ustedes escojan</li>
+        <li><b>Medir el volumen de Lucy</b> antes del 1 de octubre, para darles el número exacto de
+          lo que va a cambiar su factura de WhatsApp</li>
+        <li><b>Dejar Lucy Voz observada una jornada completa</b>, para confirmar que el enlace con
+          la central aguanta todo el día</li>
+        <li><b>Comprobar si atiende dos productos</b> pedidos en una misma frase</li>
+        <li><b>Respaldo de la memoria de Clara</b> — es lo único que no se regenera solo desde ADM</li>
+        <li><b>Revisar el reporte diario de Lucy</b> que ya está construido, para ver qué le falta</li>
+      </ul>
+    </div>
+    <div class="columna suya">
+      <h3>Lo que esperamos de ustedes</h3>
+      <p class="sub">Nada de esto es programación: son archivos, accesos y una decisión.</p>
+      <ul>
+        <li><b>Los seis textos aprobados</b> — el trámite más largo de todos. Nada arranca sin esto</li>
+        <li><b>La hoja nueva de cobros</b>, de su programador. En Excel además del PDF si se puede</li>
+        <li><b>La cuenta de envío de correo</b> — SMTP de <i>contabilidad@</i> o el buzón
+          <i>clara@finsawood.com</i></li>
+        <li><b>El número nuevo de WhatsApp</b> para cobros, y la <b>IP fija de Claro</b></li>
+        <li><b>Las modulaciones de cocina</b> — módulos, bisagras, correderas y tiradores</li>
+        <li><b>La tabla de puertas</b> — qué artículo es cada P01, P02, P03</li>
+        <li><b>Qué vendedor atiende a cada cliente</b>, para el aviso por correo</li>
+        <li><b>Si ADM consulta la DGII</b> — que nos lo confirme Esmerling</li>
+      </ul>
+    </div>
   </div>
 </section>
 
