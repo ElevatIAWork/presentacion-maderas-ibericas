@@ -29,5 +29,17 @@ presentación sirve de acta de la reunión. No recargar la página mientras se p
 
 ## Aviso
 
-Contiene información interna de Maderas Ibéricas — situación de la cartera, correos del
-personal y detalles de sus sistemas. **Este repositorio tiene que seguir siendo privado.**
+Contiene información interna de Maderas Ibéricas — situación de la cartera, correos del personal
+y detalles de sus sistemas.
+
+El repositorio es **público** porque GitHub Pages no sirve páginas desde repos privados, y hacía
+falta un link presentable. Para limitar la exposición, las páginas llevan
+`<meta name="robots" content="noindex, nofollow">`: **no aparecen en Google**, solo las abre quien
+tenga el enlace.
+
+Aun así, el contenido queda accesible para quien dé con la dirección. Cuando la reunión pase y el
+link deje de hacer falta, conviene devolverlo a privado:
+
+```bash
+gh repo edit Marlon5710/presentacion-maderas-ibericas --visibility private --accept-visibility-change-consequences
+```
