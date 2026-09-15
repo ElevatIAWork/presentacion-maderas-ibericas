@@ -5,27 +5,19 @@ Preparada para la reunión con Jiban del 15 de septiembre de 2026.
 
 ## Cómo se usa
 
-Abrir `index.html` en Chrome y pulsar `F11` para pantalla completa.
+Se abre en cualquier navegador y **se lee de corrido, desplazándose**. No hay botones ni nada que
+pulsar, y no depende de JavaScript: si el script no cargara, la página se vería igual.
 
-| | |
-|---|---|
-| Flechas o espacio | avanzar y retroceder |
-| `Home` | volver al inicio |
-| `R` | desmarcar todas las respuestas |
-
-Cada pregunta es una casilla. Al marcarla sube el contador del pie, y la lámina de cierre
-muestra cuántas quedaron abiertas. **Las marcas se guardan en el navegador**, así que la misma
-presentación sirve de acta de la reunión. No recargar la página mientras se presenta.
+Para PDF: `Ctrl+P` y guardar como PDF. Sale una sección por página, en horizontal.
 
 ## Qué hay aquí
 
 | Archivo | Para qué |
 |---|---|
 | `index.html` | la presentación |
-| `revisar.html` | las mismas láminas apiladas en una sola página, para leerlas de corrido |
 | `artefacto.html` | la misma presentación sin las etiquetas de documento, para publicarla |
 
-`revisar.html` y `artefacto.html` se generan a partir de `index.html`: no se editan a mano.
+`artefacto.html` se genera a partir de `index.html`: no se edita a mano.
 
 ## Aviso
 

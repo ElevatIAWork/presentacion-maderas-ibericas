@@ -13,22 +13,20 @@
   --sans:'Segoe UI Variable Display','Segoe UI',system-ui,-apple-system,'Helvetica Neue',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{background:var(--navy);color:var(--blanco);font-family:var(--sans);overflow:hidden;-webkit-font-smoothing:antialiased}
-body::before,body::after{content:'';position:fixed;pointer-events:none;z-index:0;
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--blanco);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body::before,body::after{content:'';position:fixed;pointer-events:none;z-index:-1;
   width:min(70vw,880px);height:min(70vw,880px);border-radius:50%;filter:blur(130px);opacity:.26}
 body::before{left:-18vw;bottom:-26vh;background:radial-gradient(circle,var(--azul),transparent 68%)}
 body::after{right:-16vw;top:-28vh;background:radial-gradient(circle,var(--morado),transparent 68%)}
 
-.slide{position:fixed;inset:0;display:none;z-index:1;flex-direction:column;justify-content:center;
-  padding:clamp(26px,4.4vw,72px) clamp(22px,5.6vw,104px) clamp(64px,7vh,92px);overflow-y:auto}
-.slide{justify-content:safe center}
-.slide.viva{display:flex}
-.slide.viva>*{animation:entra .46s var(--curva) both}
-.slide.viva>*:nth-child(2){animation-delay:.04s}
-.slide.viva>*:nth-child(3){animation-delay:.08s}
-.slide.viva>*:nth-child(4){animation-delay:.12s}
-.slide.viva>*:nth-child(5){animation-delay:.15s}
+/* Documento, no diapositivas. Antes cada seccion estaba en display:none y solo
+   JavaScript mostraba una — si el script no corria, la pagina salia en negro.
+   Ahora se lee de corrido, se desplaza como un PDF y no depende de nada. */
+.slide{position:relative;display:block;max-width:1180px;margin:0 auto;
+  padding:clamp(34px,5vh,64px) clamp(20px,5vw,72px);
+  border-bottom:1px solid var(--linea)}
+.slide:last-of-type{border-bottom:0}
 @keyframes entra{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:none}}
 
 .eyebrow{font-size:clamp(10px,1.05vw,12px);letter-spacing:.24em;text-transform:uppercase;
@@ -92,19 +90,6 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 .preg.critica{border-left:2px solid var(--parado)}
 .preg.media{border-left:2px solid var(--espera)}
 
-.barra{position:fixed;left:0;bottom:0;height:2px;background:var(--grad);z-index:6;transition:width .45s var(--curva)}
-.pie{position:fixed;bottom:clamp(12px,2vh,22px);left:clamp(22px,5.6vw,104px);right:clamp(22px,5.6vw,104px);
-  display:flex;justify-content:space-between;align-items:center;gap:14px;
-  font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--apagado);z-index:5}
-.nav{display:flex;gap:7px;align-items:center}
-.nav button{background:var(--vidrio);border:1px solid var(--linea);color:var(--tenue);
-  min-width:32px;height:32px;padding:0 10px;border-radius:100px;cursor:pointer;font-size:14px;
-  font-family:inherit;letter-spacing:.1em;transition:all .2s var(--curva)}
-.nav button:hover{color:var(--blanco);border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
-.nav button:active{transform:scale(.95)}
-.nav button:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
-.marcador{color:var(--ok);font-weight:700}
-
 @media (max-width:860px){.c2,.c3,.c4{grid-template-columns:1fr}
   .slide{justify-content:flex-start;padding-top:58px}
   .pie{font-size:9px;letter-spacing:.1em}}
@@ -158,18 +143,16 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 }
 
 @media print{
-  html,body{height:auto;overflow:visible;background:#000108!important;
-    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#fff!important;color:#111!important}
   body::before,body::after{display:none}
-  .barra,.pie{display:none!important}
-  .slide{position:relative!important;display:flex!important;inset:auto;overflow:visible!important;
-    min-height:auto;height:auto;page-break-after:always;break-after:page;
-    padding:34px 44px 40px}
-  .slide>*{animation:none!important;opacity:1!important;transform:none!important}
+  .slide{page-break-after:always;break-after:page;border-bottom:0;
+    padding:22px 26px;max-width:none}
   .slide:last-of-type{page-break-after:auto;break-after:auto}
-  .preg,.tarjeta,.paso,.nota{break-inside:avoid;page-break-inside:avoid}
+  .preg,.tarjeta,.paso,.nota,.campo,.opcion,.columna,.peldano{break-inside:avoid;
+    page-break-inside:avoid}
+  footer{display:none}
 }
-@page{size:landscape;margin:0}
+@page{size:landscape;margin:8mm}
 .num{color:var(--azul)}
 .num::after{content:" · ";color:var(--apagado)}
 
@@ -308,31 +291,10 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <div class="eyebrow">ElevatIA &nbsp;·&nbsp; Maderas Ibéricas &nbsp;·&nbsp; Finsawood</div>
   <h1>Estado y<br><span class="grad">decisiones</span></h1>
   <p class="lead" style="margin-top:clamp(18px,2.4vw,30px)">
-    Dónde está cada proyecto, qué falta, y las <strong><span data-cuenta="*"></span> preguntas</strong> que necesitamos
+    Dónde está cada proyecto, qué falta, y las <strong>24 preguntas</strong> que necesitamos
     responder juntos para seguir avanzando.
   </p>
   <div class="eyebrow" style="margin-top:clamp(22px,3vw,40px);margin-bottom:0">Septiembre 2026</div>
-</section>
-
-<!-- 2 -->
-<section class="slide">
-  <div class="eyebrow">Cómo usar esta presentación</div>
-  <h2>Es también el <span class="grad">acta de la reunión</span></h2>
-  <p class="lead">Cada pregunta se puede <strong>marcar como respondida</strong> con un clic mientras
-    conversamos. Se guardan solas: si se cierra y se vuelve a abrir, siguen marcadas.</p>
-  <label class="preg" style="margin-top:clamp(16px,2vw,26px);max-width:720px">
-    <input type="checkbox" data-q="demo">
-    <span class="caja"></span>
-    <span class="cuerpo"><b>Así se ve una pregunta</b>
-      <span>Pruébelo: haga clic aquí. Al final le decimos cuántas quedaron abiertas.
-      Para empezar de cero en cualquier momento, la tecla <b style="display:inline">R</b>.</span></span>
-  </label>
-  <div class="rejilla c4" style="margin-top:clamp(18px,2.4vw,30px)">
-    <div class="tarjeta"><div class="cifra"><span data-cuenta="lw"></span><small>Lucy WhatsApp</small></div></div>
-    <div class="tarjeta"><div class="cifra"><span data-cuenta="lv,rc"></span><small>Lucy Voz y recepción</small></div></div>
-    <div class="tarjeta"><div class="cifra"><span data-cuenta="cl"></span><small>Clara · Cobros</small></div></div>
-    <div class="tarjeta"><div class="cifra"><span data-cuenta="co,tr"></span><small>Cotizador y accesos</small></div></div>
-  </div>
 </section>
 
 <!-- 3 -->
@@ -377,25 +339,22 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 <!-- 5 -->
 <section class="slide">
   <div class="eyebrow">Proyecto 1 · lo que necesitamos</div>
-  <h2>Lucy WhatsApp — <span class="grad"><span data-cuenta="lw"></span> preguntas</span></h2>
+  <h2>Lucy WhatsApp — <span class="grad">5 preguntas</span></h2>
   <div class="pregs">
-    <label class="preg critica"><input type="checkbox" data-q="lw1"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Los 358 productos sin precio</b>
+    <div class="preg critica"><span class="cuerpo"><b>1 · Los 358 productos sin precio</b>
       <span>De los 1.612 del catálogo, unos 358 no tienen precio en ADM. Cuando un cliente
-      pregunta por esos, Lucy no puede darle un número. ¿Quién los carga y para cuándo?<b class="pide"><em>Lo que necesitamos:</em> un nombre y una fecha. Si son demasiados para cargarlos de golpe, díganos por dónde empezar — los más vendidos, por ejemplo.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="lw2"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Airtable, ¿se queda o se va?</b>
+      pregunta por esos, Lucy no puede darle un número. ¿Quién los carga y para cuándo?<b class="pide"><em>Lo que necesitamos:</em> un nombre y una fecha. Si son demasiados para cargarlos de golpe, díganos por dónde empezar — los más vendidos, por ejemplo.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>2 · Airtable, ¿se queda o se va?</b>
       <span>Esta depende de la anterior. <b style="display:inline">Si los pedidos no entran a
       ADM, Airtable deja de ser un puente y pasa a ser el único lugar donde viven</b> — y su cuenta
       está en plan de prueba. Si entran, podemos retirarlo o dejarlo solo como capa de
-      seguimiento. ¿Cuál de las dos?<b class="pide"><em>Lo que necesitamos:</em> que elijan una de las dos: se queda como capa de seguimiento, o lo retiramos cuando los pedidos entren a ADM.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="lw3"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Con el directorio que nos pasaron: ¿los pedidos a Ventas y los errores a Tecnología?</b>
+      seguimiento. ¿Cuál de las dos?<b class="pide"><em>Lo que necesitamos:</em> que elijan una de las dos: se queda como capa de seguimiento, o lo retiramos cuando los pedidos entren a ADM.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>3 · Con el directorio que nos pasaron: ¿los pedidos a Ventas y los errores a Tecnología?</b>
       <span>El aviso está construido y apagado porque faltaba saber a dónde mandarlo. Con su
       directorio ya tiene destino: los pedidos al WhatsApp de <b style="display:inline">Ventas</b>
       —que las tres comparten— y los fallos técnicos a
       <b style="display:inline">Tecnología</b>. Solo necesitamos que nos digan que sí y lo
-      encendemos.<b class="pide"><em>Lo que necesitamos:</em> un sí, y lo encendemos hoy. Si prefieren otros destinos, los dos números: uno para pedidos y otro para fallos técnicos.</b></span></span></label>
+      encendemos.<b class="pide"><em>Lo que necesitamos:</em> un sí, y lo encendemos hoy. Si prefieren otros destinos, los dos números: uno para pedidos y otro para fallos técnicos.</b></span></span></div>
   </div>
 </section>
 
@@ -406,8 +365,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <p class="lead">Es la pregunta para su programador, y afecta a Lucy WhatsApp y a Lucy Voz por
     igual. Preferimos ponerla sobre la mesa con nuestra posición ya dicha.</p>
   <div class="pregs">
-<label class="preg critica"><input type="checkbox" data-q="lw-cli"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>“El bot no debe crear clientes en ADM” — de acuerdo. ¿Puede igual escribir el pedido?</b>
+<div class="preg critica"><span class="cuerpo"><b>4 · “El bot no debe crear clientes en ADM” — de acuerdo. ¿Puede igual escribir el pedido?</b>
       <span>Nos plantean no conectar la hoja de pedidos de ADM porque ustedes crean sus propios
       clientes y no quieren que un bot registre uno que ya existe.
       <b style="display:inline;color:var(--ok)">La preocupación es correcta</b> y la compartimos:
@@ -417,14 +375,13 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <b style="display:inline">escribir pedidos</b>—, y se puede prohibir la primera sin renunciar
       a la segunda. <b style="display:inline">Nuestra propuesta: el bot nunca crea clientes.</b>
       Si reconoce al cliente, el pedido entra bajo ese cliente; si no lo reconoce, no toca ADM y
-      deja el pedido en una bandeja para que una persona lo registre.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no a la propuesta — el bot nunca crea clientes, pero sí registra el pedido bajo un cliente que ya existe.</b></span></span></label>
-    <label class="preg critica"><input type="checkbox" data-q="lw-cli2"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Si vamos por ahí, tres datos que nos hacen falta</b>
+      deja el pedido en una bandeja para que una persona lo registre.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no a la propuesta — el bot nunca crea clientes, pero sí registra el pedido bajo un cliente que ya existe.</b></span></span></div>
+    <div class="preg critica"><span class="cuerpo"><b>5 · Si vamos por ahí, tres datos que nos hacen falta</b>
       <span>¿Con qué dato buscamos al cliente — <b style="display:inline">RNC o teléfono</b>— y ese
       campo está completo en ADM? ¿<b style="display:inline">Quién registra</b> al cliente nuevo, y
       en cuánto tiempo, para que el pedido no se quede esperando? ¿O prefieren que todo lo no
       identificado caiga en un <b style="display:inline">cliente genérico de contado</b>, sin
-      duplicados pero sin trazabilidad?<b class="pide"><em>Lo que necesitamos:</em> tres respuestas cortas: con qué campo buscamos, quién registra al cliente nuevo, y si lo no identificado va a un cliente de contado.</b></span></span></label>
+      duplicados pero sin trazabilidad?<b class="pide"><em>Lo que necesitamos:</em> tres respuestas cortas: con qué campo buscamos, quién registra al cliente nuevo, y si lo no identificado va a un cliente de contado.</b></span></span></div>
   </div>
   <div class="nota">
     Conviene decirlo en la misma conversación para bajarle la tensión al tema:
@@ -465,20 +422,18 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 <!-- 7 -->
 <section class="slide densa">
   <div class="eyebrow">Proyecto 2 · lo que necesitamos</div>
-  <h2>Lucy Voz — <span class="grad"><span data-cuenta="lv"></span> preguntas</span></h2>
+  <h2>Lucy Voz — <span class="grad">2 preguntas</span></h2>
   <div class="pregs">
-    <label class="preg critica"><input type="checkbox" data-q="lv1"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>La ubicación de la sucursal no le llega al cliente</b>
+    <div class="preg critica"><span class="cuerpo"><b>6 · La ubicación de la sucursal no le llega al cliente</b>
       <span>Comprobado: cuando Lucy manda la dirección tras un pedido por teléfono,
       <b style="display:inline;color:#ff9b9b">el mensaje se pierde</b> si el cliente no le escribió
       al WhatsApp del negocio en las últimas 24 horas. Una llamada no abre esa ventana.
       <b style="display:inline;color:var(--ok)">Ya lo resolvimos:</b> las cuatro plantillas están
-      redactadas y las cargamos nosotros en Meta — están en la lámina siguiente.<b class="pide"><em>Lo que necesitamos:</em> que lean los textos y nos digan si el tono está bien. El trámite no les toca.</b></span></span></label>
-    <label class="preg critica"><input type="checkbox" data-q="lv2"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>IP fija para la central</b>
+      redactadas y las cargamos nosotros en Meta — están en la lámina siguiente.<b class="pide"><em>Lo que necesitamos:</em> que lean los textos y nos digan si el tono está bien. El trámite no les toca.</b></span></span></div>
+    <div class="preg critica"><span class="cuerpo"><b>7 · IP fija para la central</b>
       <span>Claro les da IP dinámica. Cada vez que cambia, el enlace con la central se rompe y
       Lucy deja de recibir llamadas hasta que alguien lo note. ¿Pueden pedirle a Claro una IP
-      fija?<b class="pide"><em>Lo que necesitamos:</em> quién de su lado llama a Claro, y para cuándo. Nosotros no podemos pedirla por ustedes.</b></span></span></label>
+      fija?<b class="pide"><em>Lo que necesitamos:</em> quién de su lado llama a Claro, y para cuándo. Nosotros no podemos pedirla por ustedes.</b></span></span></div>
   </div>
 </section>
 
@@ -561,10 +516,9 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       recepción, logística, tecnología. Con eso el aviso ya sabe a dónde ir.</p></div>
   </div>
   <div class="pregs">
-    <label class="preg media"><input type="checkbox" data-q="rc2"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿Le pedimos el nombre a todo el que llama?</b>
+    <div class="preg media"><span class="cuerpo"><b>8 · ¿Le pedimos el nombre a todo el que llama?</b>
       <span>Hoy Lucy solo pide el nombre cuando hay cotización o pedido. Si alguien solo consulta,
-      el aviso al área sale sin nombre. ¿Que lo pida siempre?<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si es sí, Lucy pide el nombre siempre; si es no, solo cuando haya cotización o pedido.</b></span></span></label>
+      el aviso al área sale sin nombre. ¿Que lo pida siempre?<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si es sí, Lucy pide el nombre siempre; si es no, solo cuando haya cotización o pedido.</b></span></span></div>
   </div>
 </section>
 
@@ -647,8 +601,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <p class="lead">Dos accesos que no dependen de nosotros. Sin ellos Clara no puede mandar
     ni un WhatsApp ni un correo.</p>
   <div class="pregs">
-    <label class="preg critica"><input type="checkbox" data-q="cl1"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Aprobar los textos de los mensajes — esto es lo que más tarda</b>
+    <div class="preg critica"><span class="cuerpo"><b>9 · Aprobar los textos de los mensajes — esto es lo que más tarda</b>
       <span>WhatsApp <b style="display:inline">no permite texto libre</b> a un cliente que no le ha
       escrito antes: cada mensaje lo tiene que aprobar Meta, y ese trámite toma de días a semanas.
       <b style="display:inline;color:var(--ok)">El trámite con Meta lo hacemos nosotros</b> — de
@@ -658,15 +611,14 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       trámite completo, así que van los seis juntos.
       <b style="display:inline;color:var(--ok)">No hay que esperar al número nuevo:</b> las
       plantillas son de la cuenta, no del número. Si los aprueban esta semana, estarían listos
-      antes de que el número llegue.<b class="pide"><em>Lo que necesitamos:</em> que los lean y nos digan “aprobados” o qué cambiar. Con un correo suyo nos basta para someterlos.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="cl4"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Para escribir desde contabilidad@ necesitamos su acceso de envío</b>
+      antes de que el número llegue.<b class="pide"><em>Lo que necesitamos:</em> que los lean y nos digan “aprobados” o qué cambiar. Con un correo suyo nos basta para someterlos.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>10 · Para escribir desde contabilidad@ necesitamos su acceso de envío</b>
       <span>No basta con poner esa dirección como remitente: si el correo sale de otro servidor sin
       permiso, cae en spam o lo rechazan. Con una <b style="display:inline">cuenta de envío (SMTP)
       de ese mismo buzón</b> queda resuelto y no hay que tocar nada de dominios. Si prefieren la
       alternativa que ustedes mismos plantean, <i>clara@finsawood.com</i>, nos parece más limpia
       —separa el cobro automático del buzón de contabilidad— y no cambia en nada que una persona
-      valide las respuestas.<b class="pide"><em>Lo que necesitamos:</em> que elijan la dirección, y le pidan a su técnico la cuenta de envío. Nosotros la configuramos.</b></span></span></label>
+      valide las respuestas.<b class="pide"><em>Lo que necesitamos:</em> que elijan la dirección, y le pidan a su técnico la cuenta de envío. Nosotros la configuramos.</b></span></span></div>
   </div>
 </section>
 
@@ -719,25 +671,22 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
     persona</b>.” Cada una de esas tres frases abre una pregunta de abajo.
   </div>
   <div class="pregs">
-    <label class="preg critica"><input type="checkbox" data-q="cl2"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>El estado de cuenta: ¿nos lo pueden mandar también en Excel?</b>
+    <div class="preg critica"><span class="cuerpo"><b>11 · El estado de cuenta: ¿nos lo pueden mandar también en Excel?</b>
       <span>El PDF es perfecto para que lo lea una persona, pero un bot lo lee
       <b style="display:inline">adivinando</b> por dónde cae cada número en la página. El día que
       cambie el formato empieza a leer mal sin avisar, y aquí leer mal significa
       <b style="display:inline;color:#ff9b9b">reclamarle a un cliente un monto que no es</b>. En
-      Excel cada dato viene con su nombre y el riesgo desaparece.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si su sistema lo exporta, mándennos los dos: el PDF para ustedes y el Excel para el bot.</b></span></span></label>
-    <label class="preg critica"><input type="checkbox" data-q="cl2b"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Mejor todavía: que la lista diga solo <i>a quién</i>, no <i>cuánto</i></b>
+      Excel cada dato viene con su nombre y el riesgo desaparece.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si su sistema lo exporta, mándennos los dos: el PDF para ustedes y el Excel para el bot.</b></span></span></div>
+    <div class="preg critica"><span class="cuerpo"><b>12 · Mejor todavía: que la lista diga solo <i>a quién</i>, no <i>cuánto</i></b>
       <span>Con un archivo semanal, quien pague el martes sigue recibiendo avisos hasta el
       siguiente. Si la lista trae <b style="display:inline">solo los clientes autorizados</b> y
-      Clara lee los montos de ADM en vivo, las cifras nunca envejecen.<b class="pide"><em>Lo que necesitamos:</em> que elijan: el archivo con los montos dentro, o solo la lista de clientes autorizados y los montos los saca Clara de ADM.</b></span></span></label>
-    <label class="preg critica"><input type="checkbox" data-q="cl3"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Si el cliente contesta por correo, ¿cómo se lo decimos a Clara?</b>
+      Clara lee los montos de ADM en vivo, las cifras nunca envejecen.<b class="pide"><em>Lo que necesitamos:</em> que elijan: el archivo con los montos dentro, o solo la lista de clientes autorizados y los montos los saca Clara de ADM.</b></span></span></div>
+    <div class="preg critica"><span class="cuerpo"><b>13 · Si el cliente contesta por correo, ¿cómo se lo decimos a Clara?</b>
       <span>Por WhatsApp, Clara entiende la respuesta y se detiene sola. Pero
       <b style="display:inline">los correos llegan a un buzón humano</b> y ella no los ve: si un
       cliente escribe “le pago el 20” por correo, Clara le sigue insistiendo mientras su equipo ya
       lo tiene resuelto. Hace falta una vía para decirle <b style="display:inline">“con este
-      cliente, para”</b>.<b class="pide"><em>Lo que necesitamos:</em> que elijan cómo avisarnos: una hoja compartida, un reenvío a una dirección nuestra, o un botón en el reporte de Angelo.</b></span></span></label>
+      cliente, para”</b>.<b class="pide"><em>Lo que necesitamos:</em> que elijan cómo avisarnos: una hoja compartida, un reenvío a una dirección nuestra, o un botón en el reporte de Angelo.</b></span></span></div>
   </div>
 </section>
 
@@ -749,23 +698,21 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
     Clara</strong>. Eso resuelve solo los casos delicados —abogados, acuerdos negociados,
     disputas—, pero abre estas cuatro.</p>
   <div class="pregs">
-    <label class="preg media"><input type="checkbox" data-q="cl5"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>En la hoja nueva, ¿entra también la cartera vieja?</b>
+    <div class="preg media"><span class="cuerpo"><b>14 · En la hoja nueva, ¿entra también la cartera vieja?</b>
       <span>En ADM hay deuda de hasta <b style="display:inline">ocho años</b>. Todo el que aparezca
       en la hoja, Clara le va a escribir.
       <b style="display:inline">Sugerimos arrancar solo con lo reciente</b> y abrir el resto
       después: es más fácil ampliar que apagar un incendio. Y si alguno no se debe tocar —un caso
       con abogados, un acuerdo ya negociado— basta con que no esté en la
-      hoja.<b class="pide"><em>Lo que necesitamos:</em> un límite, en años o en fecha. Algo como “desde enero de 2026” o “nada con más de un año”.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="cl8"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Los “días de atraso” del archivo, ¿desde cuándo se cuentan?</b>
+      hoja.<b class="pide"><em>Lo que necesitamos:</em> un límite, en años o en fecha. Algo como “desde enero de 2026” o “nada con más de un año”.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>15 · Los “días de atraso” del archivo, ¿desde cuándo se cuentan?</b>
       <span>Su documento decía “25 días después de la fecha de la factura”, pero en ADM hay términos
       de 15 y de 60 días. Contando desde la factura, a un cliente con 60 días de plazo se le
       reclamaría a los 25 — <b style="display:inline">cuando todavía está al día</b>.
       Ahora el archivo traerá los <i>días de atraso</i> ya calculados:
       <b style="display:inline">¿desde qué fecha los cuentan?</b> Si ustedes cuentan desde la
       factura y nosotros desde el vencimiento, el mismo cliente cae en escalones distintos.
-      Si el archivo trae la <i>fecha de vencimiento</i>, Clara los calcula sola.<b class="pide"><em>Lo que necesitamos:</em> desde qué fecha los cuentan. O más fácil todavía: que el archivo incluya la fecha de vencimiento y los calculamos nosotros.</b></span></span></label>
+      Si el archivo trae la <i>fecha de vencimiento</i>, Clara los calcula sola.<b class="pide"><em>Lo que necesitamos:</em> desde qué fecha los cuentan. O más fácil todavía: que el archivo incluya la fecha de vencimiento y los calculamos nosotros.</b></span></span></div>
   </div>
 </section>
 
@@ -776,21 +723,18 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <p class="lead">Estas ya están construidas con nuestro criterio. Solo necesitamos que las
     confirmen o nos corrijan.</p>
   <div class="pregs">
-    <label class="preg media"><input type="checkbox" data-q="cl9"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Tras 3 avisos sin respuesta se escala a Angelo. ¿Y después?</b>
+    <div class="preg media"><span class="cuerpo"><b>16 · Tras 3 avisos sin respuesta se escala a Angelo. ¿Y después?</b>
       <span><b style="display:inline">Nuestra recomendación: el bot se calla.</b> Si un humano tomó
       el caso, Clara debe apartarse; si no, el cliente sigue recibiendo mensajes automáticos
-      mientras Angelo negocia con él por teléfono.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no a que el bot se calle. Si prefieren que siga insistiendo, díganlo y lo dejamos así.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="cl10"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿Hay días propios en que prefieran que no escriba?</b>
+      mientras Angelo negocia con él por teléfono.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no a que el bot se calle. Si prefieren que siga insistiendo, díganlo y lo dejamos así.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>17 · ¿Hay días propios en que prefieran que no escriba?</b>
       <span>Los feriados oficiales ya los respeta. Faltan los suyos: cierre de mes, inventario,
-      la semana entre Navidad y Año Nuevo. ¿Y trabajan algún feriado en que sí quieran cobrar?<b class="pide"><em>Lo que necesitamos:</em> la lista de fechas. Y si no hay ninguna, díganlo también — con eso la pregunta queda cerrada.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="cl12"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿La hoja nueva traerá el teléfono y el correo de todos?</b>
+      la semana entre Navidad y Año Nuevo. ¿Y trabajan algún feriado en que sí quieran cobrar?<b class="pide"><em>Lo que necesitamos:</em> la lista de fechas. Y si no hay ninguna, díganlo también — con eso la pregunta queda cerrada.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>18 · ¿La hoja nueva traerá el teléfono y el correo de todos?</b>
       <span>Hoy, en ADM, <b style="display:inline">8 de las facturas cobrables no tienen ni
       teléfono ni correo</b>. A esos Clara no puede escribirles por ningún lado: los aparta en una
       lista para Angelo y ahí se quedan. Si al armar la hoja se pueden completar, entran al cobro
-      automático desde el primer día.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si van a faltar datos, díganos quién los completa y cuándo.</b></span></span></label>
+      automático desde el primer día.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si van a faltar datos, díganos quién los completa y cuándo.</b></span></span></div>
   </div>
   <div class="nota">
     <b>Y seis cosas ya decididas</b>, con el criterio más prudente, por si quieren corregirnos:
@@ -818,7 +762,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       pierde haciéndolo a mano.</p></div>
     <div class="tarjeta" style="border-color:rgba(255,200,87,.3)"><h3>Falta traducir a precio</h3>
       <p>Para pasar de “esto hay en el plano” a “esto cuesta” necesitamos su tabla de artículos.
-      Es la pregunta <span data-ref="co2"></span>.</p></div>
+      Es la pregunta 20.</p></div>
   </div>
   <div class="nota">
     Este es el proyecto con <b>más potencial de ahorro por hora de trabajo</b> y el que menos
@@ -830,28 +774,24 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 <!-- 15 -->
 <section class="slide densa">
   <div class="eyebrow">Proyecto 4 · lo que necesitamos</div>
-  <h2>Cotizador — <span class="grad"><span data-cuenta="co"></span> preguntas</span></h2>
+  <h2>Cotizador — <span class="grad">4 preguntas</span></h2>
   <div class="pregs">
-    <label class="preg critica"><input type="checkbox" data-q="co1"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿Tienen ya licencia de AutoCAD o de alguna herramienta de Autodesk?</b>
+    <div class="preg critica"><span class="cuerpo"><b>19 · ¿Tienen ya licencia de AutoCAD o de alguna herramienta de Autodesk?</b>
       <span>Para abrir los planos hace falta una herramienta con licencia comercial, y eso
       <b style="display:inline">lo resolvemos nosotros</b> antes de ponerlo en producción: o se
       licencia o usamos una alternativa. Pero si ustedes ya tienen una, el atajo es gratis y nos
-      ahorramos el gasto. Es la única razón por la que se los preguntamos.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si es sí, cuál herramienta y cuántas licencias tienen.</b></span></span></label>
-    <label class="preg critica"><input type="checkbox" data-q="co2"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>Nos falta la tabla de puertas</b>
+      ahorramos el gasto. Es la única razón por la que se los preguntamos.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si es sí, cuál herramienta y cuántas licencias tienen.</b></span></span></div>
+    <div class="preg critica"><span class="cuerpo"><b>20 · Nos falta la tabla de puertas</b>
       <span>En los planos las puertas vienen marcadas como <i>P01, P02, P03…</i> Necesitamos la
       tabla que dice qué artículo suyo es cada una: medida, material, precio. Sin eso el bot sabe
-      que hay 40 puertas pero no cuánto cuestan.<b class="pide"><em>Lo que necesitamos:</em> el archivo, como lo tengan. Excel, PDF, o hasta una foto de la tabla nos sirve para empezar.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="co3"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿Los planos vienen en metros o en centímetros?</b>
+      que hay 40 puertas pero no cuánto cuestan.<b class="pide"><em>Lo que necesitamos:</em> el archivo, como lo tengan. Excel, PDF, o hasta una foto de la tabla nos sirve para empezar.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>21 · ¿Los planos vienen en metros o en centímetros?</b>
       <span>Los DWG no traen la unidad de forma confiable, y equivocarse la multiplica o la divide
-      por cien.<b class="pide"><em>Lo que necesitamos:</em> una de las dos. O “depende del cliente”, y entonces lo preguntamos plano por plano.</b></span></span></label>
-    <label class="preg media"><input type="checkbox" data-q="co4"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿Qué hacemos con lo que se nombra pero no se dibuja?</b>
+      por cien.<b class="pide"><em>Lo que necesitamos:</em> una de las dos. O “depende del cliente”, y entonces lo preguntamos plano por plano.</b></span></span></div>
+    <div class="preg media"><span class="cuerpo"><b>22 · ¿Qué hacemos con lo que se nombra pero no se dibuja?</b>
       <span>En el plano de prueba aparecen <b style="display:inline">52 baños mencionados sin
       medidas</b>. <b style="display:inline">Recomendamos listarlos aparte</b>, marcados, para que
-      nadie firme una cotización creyendo que están incluidos.<b class="pide"><em>Lo que necesitamos:</em> que elijan una: medida estándar suya, lista aparte para que ustedes la revisen, o ignorarlo.</b></span></span></label>
+      nadie firme una cotización creyendo que están incluidos.<b class="pide"><em>Lo que necesitamos:</em> que elijan una: medida estándar suya, lista aparte para que ustedes la revisen, o ignorarlo.</b></span></span></div>
   </div>
 </section>
 
@@ -882,19 +822,17 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <h2>Accesos y <span class="grad">responsables</span></h2>
   <p class="lead">Lo que nos frena a todos por igual. Dos preguntas, y con ellas cerramos.</p>
   <div class="pregs">
-    <label class="preg critica"><input type="checkbox" data-q="tr1"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿Quién aprueba qué, y en cuánto tiempo?</b>
+    <div class="preg critica"><span class="cuerpo"><b>23 · ¿Quién aprueba qué, y en cuánto tiempo?</b>
       <span>Varias de estas respuestas no son técnicas: son decisiones de negocio sin dueño claro.
       Nos ayudaría salir de aquí con <b style="display:inline">un nombre y una fecha</b> por cada
-      pendiente. Es lo que convierte esta lista en avance real.<b class="pide"><em>Lo que necesitamos:</em> un nombre por cada pendiente de su columna, y una fecha aproximada. No hace falta que sea exacta.</b></span></span></label>
-    <label class="preg critica"><input type="checkbox" data-q="tr3"><span class="caja"></span>
-      <span class="cuerpo"><b><span class="num"></span>¿Qué día arrancamos Clara?</b>
+      pendiente. Es lo que convierte esta lista en avance real.<b class="pide"><em>Lo que necesitamos:</em> un nombre por cada pendiente de su columna, y una fecha aproximada. No hace falta que sea exacta.</b></span></span></div>
+    <div class="preg critica"><span class="cuerpo"><b>24 · ¿Qué día arrancamos Clara?</b>
       <span>Es la pregunta que le da sentido a todas las anteriores. Nuestra propuesta concreta:
       <b style="display:inline">esta misma semana encendemos solo la lectura</b> —Clara trae la
       cartera de ADM cada mañana y no le escribe a nadie—, así verificamos los datos sin ningún
       riesgo. Y el <b style="display:inline">primer mensaje a un cliente real</b> sale el día que
       Meta apruebe los textos, arrancando con <b style="display:inline">15 clientes al día y solo
-      deuda reciente</b>. ¿Les sirve así, o prefieren otro ritmo?<b class="pide"><em>Lo que necesitamos:</em> una fecha. O un sí a nuestra propuesta: la lectura esta semana, y el primer mensaje cuando Meta apruebe los textos.</b></span></span></label>
+      deuda reciente</b>. ¿Les sirve así, o prefieren otro ritmo?<b class="pide"><em>Lo que necesitamos:</em> una fecha. O un sí a nuestra propuesta: la lectura esta semana, y el primer mensaje cuando Meta apruebe los textos.</b></span></span></div>
   </div>
   <div class="nota">
     Una cosa que nos gustaría dejar dicha: <b>los cuatro bots ya están construidos</b>. Lo que
@@ -1001,7 +939,6 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
           <li>Y el dígito verificador funciona siempre, pase lo que pase</li>
         </ul></div>
     </div>
-  </div>
   </div>
   <div class="nota">
     <b>Por qué esta y no una copia descargada:</b> la DGII publica su archivo cada varios días
@@ -1224,123 +1161,16 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
     <div class="tarjeta"><h3>El cotizador entra en producción</h3>
       <p>Con la tabla de puertas y la licencia resuelta, deja de ser una prueba.</p></div>
   </div>
-  <div class="marco-cierre">
-    <div class="cuenta"><span id="resueltas">0</span> <em>de</em> <span id="totales">0</span></div>
-    <p>preguntas respondidas en esta reunión</p>
-  </div>
   <p class="lead" style="margin-top:clamp(14px,2vw,24px)">Gracias, Jiban y equipo.
     <strong>ElevatIA</strong> · septiembre 2026</p>
 </section>
 
-<div class="barra" id="barra" style="width:0"></div>
-<div class="pie">
-  <span>ElevatIA × Maderas Ibéricas · Finsawood</span>
-  <span id="pendientes" class="marcador"></span>
-  <div class="nav">
-    <button id="atras" aria-label="Lámina anterior">&#8592;</button>
-    <span id="paginador" style="min-width:46px;text-align:center">1 / 1</span>
-    <button id="alante" aria-label="Lámina siguiente">&#8594;</button>
-  </div>
-</div>
 
-<script>
-(function(){
-  var laminas = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var barra = document.getElementById('barra');
-  var paginador = document.getElementById('paginador');
-  var pendientes = document.getElementById('pendientes');
-  var actual = 0;
 
-  /* ---- acta: las respuestas se guardan en este navegador ---- */
-  var LLAVE = 'maderas-acta-2026-09';
-  var cajas = Array.prototype.slice.call(document.querySelectorAll('.preg input[data-q]'))
-    .filter(function(c){ return c.dataset.q !== 'demo'; });
-  var guardado = {};
-  try { guardado = JSON.parse(localStorage.getItem(LLAVE) || '{}'); } catch(e){ guardado = {}; }
-
-  function contar(){
-    var listas = cajas.filter(function(c){ return c.checked; }).length;
-    var res = document.getElementById('resueltas');
-    var tot = document.getElementById('totales');
-    if (res) res.textContent = listas;
-    if (tot) tot.textContent = cajas.length;
-    pendientes.textContent = listas + ' / ' + cajas.length + ' respondidas';
-  }
-
-  /* los numeros, los conteos y las referencias se calculan solos:
-     asi puedo agregar o quitar preguntas sin que nada quede descuadrado */
-  cajas.forEach(function(c, i){
-    var etiqueta = c.parentNode.querySelector('.num');
-    if (etiqueta) etiqueta.textContent = i + 1;
-  });
-  function cuantas(pref){
-    if (pref === '*') return cajas.length;
-    var grupos = pref.split(',');
-    return cajas.filter(function(c){
-      return grupos.indexOf(c.dataset.q.slice(0, 2)) !== -1;
-    }).length;
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-cuenta]'), function(e){
-    e.textContent = cuantas(e.dataset.cuenta);
-  });
-  Array.prototype.forEach.call(document.querySelectorAll('[data-ref]'), function(e){
-    var i = cajas.findIndex(function(c){ return c.dataset.q === e.dataset.ref; });
-    e.textContent = i === -1 ? '?' : (i + 1);
-  });
-
-  cajas.forEach(function(c){
-    if (guardado[c.dataset.q]) c.checked = true;
-    c.addEventListener('change', function(){
-      guardado[c.dataset.q] = c.checked;
-      try { localStorage.setItem(LLAVE, JSON.stringify(guardado)); } catch(e){}
-      contar();
-    });
-  });
-  contar();
-
-  /* ---- navegación ---- */
-  function ir(n){
-    actual = Math.max(0, Math.min(laminas.length - 1, n));
-    laminas.forEach(function(l, i){ l.classList.toggle('viva', i === actual); });
-    barra.style.width = ((actual + 1) / laminas.length * 100) + '%';
-    paginador.textContent = (actual + 1) + ' / ' + laminas.length;
-    try { history.replaceState(null, '', '#' + (actual + 1)); } catch(e){}
-  }
-
-  document.getElementById('atras').addEventListener('click', function(){ ir(actual - 1); });
-  document.getElementById('alante').addEventListener('click', function(){ ir(actual + 1); });
-
-  document.addEventListener('keydown', function(e){
-    var escribiendo = /^(INPUT|TEXTAREA|BUTTON)$/.test(document.activeElement.tagName);
-    if (e.key === 'ArrowRight' || e.key === 'PageDown') { ir(actual + 1); e.preventDefault(); }
-    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { ir(actual - 1); e.preventDefault(); }
-    else if (e.key === ' ' && !escribiendo) { ir(actual + 1); e.preventDefault(); }
-    else if (e.key === 'Home') { ir(0); e.preventDefault(); }
-    else if (e.key === 'End') { ir(laminas.length - 1); e.preventDefault(); }
-    else if ((e.key === 'r' || e.key === 'R') && !escribiendo) {
-      if (confirm('¿Desmarcar todas las respuestas y empezar de cero?')) {
-        cajas.forEach(function(c){ c.checked = false; });
-        var demo = document.querySelector('[data-q="demo"]');
-        if (demo) demo.checked = false;
-        guardado = {};
-        try { localStorage.removeItem(LLAVE); } catch(err){}
-        contar();
-      }
-      e.preventDefault();
-    }
-  });
-
-  var x0 = null;
-  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
-  document.addEventListener('touchend', function(e){
-    if (x0 === null) return;
-    var d = e.changedTouches[0].clientX - x0;
-    if (Math.abs(d) > 56) ir(actual + (d < 0 ? 1 : -1));
-    x0 = null;
-  }, {passive:true});
-
-  var inicial = parseInt((location.hash || '').replace('#',''), 10);
-  ir(isNaN(inicial) ? 0 : inicial - 1);
-})();
-</script>
+<footer style="max-width:1180px;margin:0 auto;padding:clamp(28px,4vh,44px) clamp(20px,5vw,72px);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.34);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+  <span>ElevatIA &times; Maderas Ib&eacute;ricas &middot; Finsawood</span>
+  <span>Septiembre 2026</span>
+</footer>
 
