@@ -201,6 +201,32 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 .espera-item i{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.12em;
   text-transform:uppercase;color:var(--espera);margin-top:auto;padding-top:4px}
 @media (max-width:860px){.espera-lista{grid-template-columns:1fr}}
+
+.opcion{background:var(--vidrio);border:1px solid var(--linea);border-radius:14px;
+  padding:clamp(12px,1.3vw,17px);display:flex;flex-direction:column;gap:7px;position:relative}
+.opcion.elegida{border-color:rgba(46,230,168,.45);background:rgba(46,230,168,.05)}
+.opcion .letra{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--apagado)}
+.opcion.elegida .letra{color:var(--ok)}
+.opcion h4{font-size:clamp(13px,1.24vw,16px);font-weight:700;margin:0;line-height:1.25}
+.opcion p{font-size:clamp(11px,1.03vw,12.8px);line-height:1.5;color:var(--tenue);margin:0}
+.opcion dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:4px 0 0;
+  font-size:clamp(10.5px,1vw,12.2px);line-height:1.45}
+.opcion dt{color:var(--apagado)}
+.opcion dd{margin:0;color:var(--blanco)}
+.sello{position:absolute;top:-9px;right:12px;background:var(--ok);color:var(--navy);
+  font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px}
+
+.opcion .como{font-size:clamp(10.8px,1.02vw,12.6px);line-height:1.5;color:var(--tenue);margin:0}
+.opcion .juicio{margin:0;display:grid;gap:3px}
+.opcion .juicio li{list-style:none;font-size:clamp(10.5px,1vw,12.2px);line-height:1.42;
+  padding-left:15px;position:relative;color:var(--tenue)}
+.opcion .juicio li::before{position:absolute;left:0;font-weight:800}
+.opcion .bien li::before{content:'+';color:var(--ok)}
+.opcion .mal li::before{content:'2';color:var(--parado)}
+.opcion .rotulo{font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--apagado);margin:3px 0 1px}
 </style>
 
 <style id="hoja-de-contacto">
@@ -847,8 +873,79 @@ html,body{height:auto;overflow:auto}
 </section>
 
 <!-- los otros tres -->
+<!-- opciones dgii -->
 <section class="slide">
   <div class="marca-lamina">24</div>
+  <div class="eyebrow">Lo nuevo · la decisión es suya</div>
+  <h2>Validar el RNC en la llamada: <span class="grad">tres caminos</span></h2>
+  <p class="lead">Los tres son posibles. Cambian el costo, la velocidad y de qué dependemos.
+    Nuestra recomendación está marcada, pero deciden ustedes.</p>
+  <div class="escalera">
+    <div class="opcion">
+      <span class="letra">Opción A · lo mínimo</span>
+      <h4>Solo el dígito verificador</h4>
+      <p class="como"><b>Cómo sería:</b> el cliente dicta su RNC, Lucy comprueba con una cuenta
+        matemática que el número está bien formado. Si falla, se lo pide otra vez en la misma
+        llamada.</p>
+      <p class="rotulo">A favor</p>
+      <ul class="juicio bien">
+        <li>Responde al instante, no consulta nada</li>
+        <li>No cuesta nada, ni montaje ni mensual</li>
+        <li>Nada externo que se pueda caer</li>
+      </ul>
+      <p class="rotulo">En contra</p>
+      <ul class="juicio mal">
+        <li>No sabe si el RNC existe de verdad</li>
+        <li>No trae el nombre ni el estado</li>
+      </ul>
+    </div>
+    <div class="opcion elegida">
+      <span class="sello">Recomendada</span>
+      <span class="letra">Opción B · la completa</span>
+      <h4>Dígito verificador + copia del registro</h4>
+      <p class="como"><b>Cómo sería:</b> lo mismo que la A, y además un flujo baja el registro de
+        la DGII una vez por semana. Lucy consulta esa copia y sabe el nombre y si está activo.</p>
+      <p class="rotulo">A favor</p>
+      <ul class="juicio bien">
+        <li>Confirma nombre y estado del contribuyente</li>
+        <li>Instantánea: la copia está en casa</li>
+        <li>Gratis: el registro es público</li>
+      </ul>
+      <p class="rotulo">En contra</p>
+      <ul class="juicio mal">
+        <li>Hay que decidir dónde guardar 790.000 registros</li>
+        <li>Los datos tienen hasta una semana de antigüedad</li>
+      </ul>
+    </div>
+    <div class="opcion">
+      <span class="letra">Opción C · en vivo</span>
+      <h4>Consulta a un servicio externo</h4>
+      <p class="como"><b>Cómo sería:</b> cuando el cliente dicta su RNC, Lucy le pregunta a un
+        proveedor externo y espera su respuesta antes de seguir la conversación.</p>
+      <p class="rotulo">A favor</p>
+      <ul class="juicio bien">
+        <li>Los datos están al minuto</li>
+        <li>Nada que guardar ni mantener</li>
+      </ul>
+      <p class="rotulo">En contra</p>
+      <ul class="juicio mal">
+        <li><b style="color:var(--blanco)">Cobro mensual por consulta</b></li>
+        <li>Si su servicio tarda, Lucy calla con el cliente esperando</li>
+        <li>Los datos de sus clientes pasan por un tercero</li>
+      </ul>
+    </div>
+  </div>
+  <div class="nota">
+    <b>Por qué la B:</b> da todo lo que da la C —existencia, nombre y estado— sin costo mensual y
+    sin que una caída ajena deje a Lucy muda con el cliente al teléfono. El registro de la DGII es
+    público y gratuito; ya lo descargamos y lo probamos. <b>Y se puede llegar por partes:</b>
+    arrancar con la A esta semana, que no cuesta nada y ya evita el error más común, y sumarle la
+    copia del registro cuando decidan dónde guardarla.
+  </div>
+</section>
+
+<section class="slide">
+  <div class="marca-lamina">25</div>
   <div class="eyebrow">Lo nuevo · cómo lo haríamos</div>
   <h2>Los otros tres, <span class="grad">y lo que cuestan de verdad</span></h2>
   <p class="lead">Dos de los tres están más cerca de lo que parece: ya hay trabajo hecho que se
@@ -878,7 +975,7 @@ html,body{height:auto;overflow:auto}
 </section>
 
 <section class="slide">
-  <div class="marca-lamina">25</div>
+  <div class="marca-lamina">26</div>
   <div class="eyebrow">Lo que esperamos de ustedes</div>
   <span class="chip espera">Nada de esto es programación</span>
   <h2>Lo que estamos <span class="grad">esperando recibir</span></h2>
@@ -914,7 +1011,7 @@ html,body{height:auto;overflow:auto}
 </section>
 
 <section class="slide">
-  <div class="marca-lamina">26</div>
+  <div class="marca-lamina">27</div>
   <div class="eyebrow">Para cerrar</div>
   <h2>Si salimos de aquí con <span class="grad">esto respondido</span>…</h2>
   <div class="rejilla c3">
