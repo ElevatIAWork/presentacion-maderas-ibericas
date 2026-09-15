@@ -1,3 +1,6 @@
+<!-- Se publica en GitHub Pages para tener un link presentable. La pagina lleva
+     informacion interna de un cliente, asi que se le pide a los buscadores que NO
+     la indexen: sigue abierta a quien tenga el link, pero no sale en Google. -->
 <title>Presentación Maderas Ibéricas</title>
 <style>
 :root{
@@ -181,6 +184,17 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 .peldano span{display:block;font-size:clamp(10.5px,1vw,12px);line-height:1.45;
   color:var(--apagado);margin-top:6px}
 @media (max-width:860px){.escalera{grid-template-columns:1fr}}
+
+.espera-lista{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  margin-top:clamp(12px,1.6vw,20px)}
+.espera-item{background:var(--vidrio);border:1px solid var(--linea);border-radius:13px;
+  padding:clamp(11px,1.2vw,15px);border-left:2px solid var(--espera);display:flex;
+  flex-direction:column;gap:5px}
+.espera-item b{font-size:clamp(12.5px,1.18vw,15px);font-weight:650}
+.espera-item span{font-size:clamp(11px,1.03vw,12.8px);line-height:1.5;color:var(--apagado)}
+.espera-item i{font-style:normal;font-size:10px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--espera);margin-top:auto;padding-top:4px}
+@media (max-width:860px){.espera-lista{grid-template-columns:1fr}}
 </style>
 
 
@@ -733,6 +747,70 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 </section>
 
 <!-- 17 -->
+<!-- salidas -->
+<section class="slide">
+  <div class="eyebrow">Lo que salió de esta reunión</div>
+  <h2>Lo nuevo <span class="grad">que nos pidieron</span></h2>
+  <p class="lead">Anotado tal cual se habló, para que quede por escrito y nadie tenga que
+    acordarse de memoria.</p>
+  <div class="escalera">
+    <div class="peldano"><i>Lucy · identidad</i><b>Validar el RNC con la DGII</b>
+      <span>Que al identificar a un cliente por su RNC, el bot confirme contra la DGII que existe
+      y traiga el nombre legal. Hoy se fía de lo que hay en ADM.</span></div>
+    <div class="peldano"><i>Lucy · avisos</i><b>Aviso al vendedor por correo</b>
+      <span>Hoy el aviso de pedido va por WhatsApp. Que vaya también por correo al vendedor que
+      corresponda, más el correo de confirmación de pago.</span></div>
+    <div class="peldano"><i>Lucy · gerencia</i><b>Recap y reporte diario</b>
+      <span>Un resumen al cierre de cada día con lo que pasó en las llamadas y los chats. Es el
+      equivalente al reporte que ya tiene Clara para Angelo.</span></div>
+    <div class="peldano" style="border-left-color:#2ee6a8"><i style="color:#2ee6a8">Clara · ya está así</i><b>Cobros de lunes a viernes</b>
+      <span>Confirmado. Clara ya trabaja de lunes a viernes, de 8:00 a 5:00, y respeta los
+      feriados dominicanos. No hay que cambiar nada.</span></div>
+    <div class="peldano"><i>Transversal</i><b>Unificar los correos</b>
+      <span>Hoy conviven <i>@finsawood.com</i> y <i>@maderasibericas.com</i> en el mismo equipo.
+      Unificarlos simplifica desde qué dirección escribe cada bot.</span></div>
+    <div class="peldano"><i>Por confirmar</i><b>Mejoras Maderas Ibéricas</b>
+      <span>Anotado en la reunión sin más detalle. Queda pendiente precisar a qué se refiere para
+      poder estimarlo.</span></div>
+  </div>
+</section>
+
+<!-- esperando -->
+<section class="slide">
+  <div class="eyebrow">Lo que esperamos de ustedes</div>
+  <span class="chip espera">Nada de esto es programación</span>
+  <h2>Lo que estamos <span class="grad">esperando recibir</span></h2>
+  <p class="lead">No son decisiones ni opiniones: son <strong>archivos y accesos</strong>. Cada uno
+    tiene un proyecto detenido esperándolo.</p>
+  <div class="espera-lista">
+    <div class="espera-item"><b>Las modulaciones de cocina</b>
+      <span>“Te puedo compartir las diferentes modulaciones que nosotros utilizamos en las cocinas
+      para preparar el listado de módulos, bisagras, correderas y tiradores.” Sin eso el cotizador
+      cuenta las piezas pero no sabe cuáles son las suyas.</span>
+      <i>Cotizador</i></div>
+    <div class="espera-item"><b>La tabla de puertas</b>
+      <span>Qué artículo suyo es cada <i>P01, P02, P03…</i> del plano: medida, material y precio.
+      Es lo que convierte “hay 40 puertas” en una cotización.</span>
+      <i>Cotizador</i></div>
+    <div class="espera-item"><b>La hoja nueva de cobros</b>
+      <span>De su programador: los clientes que deben, con teléfono y correo. Preferiblemente en
+      Excel además del PDF.</span>
+      <i>Clara · bloqueante</i></div>
+    <div class="espera-item"><b>Los seis textos aprobados</b>
+      <span>Es el trámite más largo de todos: Meta tarda de días a semanas. Hasta que no estén,
+      Clara no le puede escribir a nadie.</span>
+      <i>Clara · bloqueante</i></div>
+    <div class="espera-item"><b>La cuenta de envío de correo</b>
+      <span>Una cuenta SMTP de <i>contabilidad@</i>, o el buzón <i>clara@finsawood.com</i> que
+      ustedes mismos propusieron.</span>
+      <i>Clara · bloqueante</i></div>
+    <div class="espera-item"><b>El número nuevo de WhatsApp</b>
+      <span>El dedicado a cobros, ya confirmado. Y la IP fija de Claro para que la central deje de
+      caerse sola.</span>
+      <i>Clara y Lucy Voz</i></div>
+  </div>
+</section>
+
 <section class="slide">
   <div class="eyebrow">Para cerrar</div>
   <h2>Si salimos de aquí con <span class="grad">esto respondido</span>…</h2>
