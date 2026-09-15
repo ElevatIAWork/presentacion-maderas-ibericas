@@ -269,6 +269,37 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 .densa .cuerpo span{line-height:1.42}
 .columnas-hoja{gap:8px}
 .campo{padding:clamp(8px,.9vw,11px) clamp(10px,1.1vw,14px)}
+
+/* Simulacion de WhatsApp. Usa los colores reales de la aplicacion a proposito:
+   la gracia es que quien la vea reconozca al instante donde va a aparecer. */
+.wa{background:#0B141A;border-radius:14px;padding:12px 11px 14px;border:1px solid rgba(255,255,255,.08)}
+.wa-cab{display:flex;align-items:center;gap:8px;padding-bottom:9px;
+  border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:11px}
+.wa-foto{width:26px;height:26px;border-radius:50%;background:#2A3942;flex:0 0 auto;
+  display:grid;place-items:center;font-size:11px;font-weight:700;color:#8696A0}
+.wa-cab b{font-size:12px;font-weight:600;color:#E9EDEF;display:block;line-height:1.2}
+.wa-cab span{font-size:10px;color:#8696A0}
+.burbuja{background:#005C4B;border-radius:8px 0 8px 8px;padding:8px 10px 6px;
+  max-width:90%;margin-left:auto;position:relative}
+.burbuja p{margin:0 0 6px;font-size:12px;line-height:1.48;color:#E9EDEF}
+.burbuja p:last-of-type{margin-bottom:3px}
+.burbuja .doc{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.22);
+  border-radius:7px;padding:8px 9px;margin:0 0 7px}
+.burbuja .doc svg{flex:0 0 auto}
+.burbuja .doc b{font-size:11px;color:#E9EDEF;font-weight:600;display:block;line-height:1.25}
+.burbuja .doc i{font-style:normal;font-size:9.5px;color:#8696A0}
+.burbuja .hora{font-size:9.5px;color:#8696A0;text-align:right;display:block}
+.wa-pie{font-size:10px;color:#8696A0;text-align:center;margin:9px 0 0;line-height:1.4}
+.plantilla-fila{display:flex;gap:10px;align-items:flex-start;padding:9px 0;
+  border-bottom:1px solid var(--linea)}
+.plantilla-fila:last-child{border-bottom:0}
+.plantilla-fila .pin{flex:0 0 auto;width:7px;height:7px;border-radius:50%;margin-top:6px}
+.plantilla-fila b{display:block;font-size:clamp(12px,1.14vw,14.5px);font-weight:650;
+  margin-bottom:2px}
+.plantilla-fila code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:10.5px;
+  color:var(--apagado);display:block;margin-bottom:3px}
+.plantilla-fila span{font-size:clamp(10.5px,1vw,12.4px);line-height:1.45;color:var(--tenue);
+  display:block}
 </style>
 
 
@@ -452,6 +483,71 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 </section>
 
 <!-- 9 -->
+<!-- plantillas lucy -->
+<section class="slide densa">
+  <div class="eyebrow">Proyecto 2 · lo que hay que someter a Meta</div>
+  <h2>Las cuatro plantillas <span class="grad">de Lucy</span></h2>
+  <p class="lead">Fuera de las 24 horas desde que el cliente escribió, WhatsApp
+    <strong>solo deja enviar plantillas aprobadas</strong>. Una llamada no abre esa ventana — por
+    eso Lucy las necesita.</p>
+  <div class="rejilla c2" style="align-items:start">
+    <div>
+      <div class="plantilla-fila">
+        <span class="pin" style="background:#2ee6a8"></span>
+        <div><b>Cotización en PDF</b><code>cotizaciones_maderas · ya aprobada</code>
+          <span>Al colgar, le llega la cotización que acaba de pedir por teléfono. Es la que
+          llevaba semanas trabada y ya funciona.</span></div>
+      </div>
+      <div class="plantilla-fila">
+        <span class="pin" style="background:#ffc857"></span>
+        <div><b>Recordatorio de cotización</b><code>recordatorio_cotizacion · existe, apagada</code>
+          <span>Si pasan unos días y la cotización no se convirtió en pedido, le da seguimiento sin
+          que nadie tenga que acordarse.</span></div>
+      </div>
+      <div class="plantilla-fila">
+        <span class="pin" style="background:#ff6b6b"></span>
+        <div><b>Ubicación de la sucursal</b><code>por crear</code>
+          <span>La dirección y el mapa de dónde recoger. <b style="color:var(--blanco)">Hoy se
+          pierde</b> si el cliente no escribió en las últimas 24 horas.</span></div>
+      </div>
+      <div class="plantilla-fila">
+        <span class="pin" style="background:#ff6b6b"></span>
+        <div><b>Pedido listo para recoger</b><code>por crear</code>
+          <span>Hoy sale como texto libre, así que solo llega a quien escribió hace poco. Como
+          plantilla, llega siempre.</span></div>
+      </div>
+    </div>
+    <div class="wa">
+      <div class="wa-cab">
+        <div class="wa-foto">MI</div>
+        <div><b>Maderas Ibéricas</b><span>Cuenta de empresa</span></div>
+      </div>
+      <div class="burbuja">
+        <p>Hola Juan, le saluda Lucy de Maderas Ibéricas.</p>
+        <p>Su pedido <b>No. 4218</b> ya está <b>LISTO</b> para recoger en la sucursal
+        <b>Santiago</b>.</p>
+        <div class="doc">
+          <svg width="20" height="24" viewBox="0 0 20 24" aria-hidden="true">
+            <path d="M2 1h10l6 6v16H2z" fill="#D5DBDC"/>
+            <path d="M12 1l6 6h-6z" fill="#9AA5A8"/>
+            <text x="10" y="18" font-size="6" font-weight="700" fill="#C0392B"
+              text-anchor="middle" font-family="sans-serif">PDF</text>
+          </svg>
+          <div><b>Pedido-4218.pdf</b><i>1 página · 84 kB</i></div>
+        </div>
+        <p>Horario: lunes a viernes de 8am a 5pm, sábados de 8am a 12pm. Le esperamos.</p>
+        <span class="hora">10:42 ✓✓</span>
+      </div>
+      <p class="wa-pie">Así llega al teléfono del cliente, con el nombre verificado de la empresa.</p>
+    </div>
+  </div>
+  <div class="nota">
+    <b>El trámite lo hacemos nosotros</b>, igual que con las de cobros: de ustedes solo hace falta
+    el visto bueno del texto. Y van <b>junto con las seis de Clara</b> — un solo envío a Meta en
+    vez de dos trámites separados, que es lo que ahorra semanas.
+  </div>
+</section>
+
 <section class="slide">
   <div class="eyebrow">Lo que pidió Jiban por nota de voz</div>
   <span class="chip espera">A medio camino</span>
@@ -634,10 +730,9 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       Excel cada dato viene con su nombre y el riesgo desaparece.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si su sistema lo exporta, mándennos los dos: el PDF para ustedes y el Excel para el bot.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="cl2b"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Mejor todavía: que la lista diga solo <i>a quién</i>, no <i>cuánto</i></b>
-      <span>Con un archivo semanal, quien pague el martes seguiría recibiendo avisos hasta el
+      <span>Con un archivo semanal, quien pague el martes sigue recibiendo avisos hasta el
       siguiente. Si la lista trae <b style="display:inline">solo los clientes autorizados</b> y los
-      montos los lee Clara de ADM en vivo, ustedes controlan <b style="display:inline">a quién</b>
-      se le cobra y las cifras nunca se quedan viejas.<b class="pide"><em>Lo que necesitamos:</em> que elijan: el archivo con los montos dentro, o solo la lista de clientes autorizados y los montos los saca Clara de ADM.</b></span></span></label>
+      montos los lee Clara de ADM en vivo, las cifras nunca se quedan viejas.<b class="pide"><em>Lo que necesitamos:</em> que elijan: el archivo con los montos dentro, o solo la lista de clientes autorizados y los montos los saca Clara de ADM.</b></span></span></label>
     <label class="preg critica"><input type="checkbox" data-q="cl3"><span class="caja"></span>
       <span class="cuerpo"><b><span class="num"></span>Si el cliente contesta por correo, ¿cómo se lo decimos a Clara?</b>
       <span>Por WhatsApp, Clara entiende la respuesta y se detiene sola. Pero
