@@ -24,8 +24,15 @@ Para PDF: `Ctrl+P` y guardar como PDF. Sale una sección por página, en horizon
 Contiene información interna de Maderas Ibéricas — situación de la cartera, correos del personal
 y detalles de sus sistemas.
 
-El repositorio es **público** porque GitHub Pages no sirve páginas desde repos privados, y hacía
-falta un link presentable. Para limitar la exposición, las páginas llevan
+El repositorio vive bajo la organización **ElevatIAWork**, no bajo una cuenta personal, para que
+el enlace lleve el nombre de la empresa y no el de nadie en particular. Se publica en:
+
+```
+https://elevatiawork.github.io/presentacion-maderas-ibericas/
+```
+
+Es **público** porque GitHub Pages no sirve páginas desde repos privados, y hacía falta un link
+presentable. Para limitar la exposición, las páginas llevan
 `<meta name="robots" content="noindex, nofollow">`: **no aparecen en Google**, solo las abre quien
 tenga el enlace.
 
@@ -33,5 +40,5 @@ Aun así, el contenido queda accesible para quien dé con la dirección. Cuando 
 link deje de hacer falta, conviene devolverlo a privado:
 
 ```bash
-gh repo edit Marlon5710/presentacion-maderas-ibericas --visibility private --accept-visibility-change-consequences
+gh repo edit ElevatIAWork/presentacion-maderas-ibericas --visibility private --accept-visibility-change-consequences
 ```
