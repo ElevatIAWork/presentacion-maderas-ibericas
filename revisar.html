@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <!-- Se publica en GitHub Pages para tener un link presentable. La pagina lleva
      informacion interna de un cliente, asi que se le pide a los buscadores que NO
      la indexen: sigue abierta a quien tenga el link, pero no sale en Google. -->
-<meta name="robots" content="noindex, nofollow">
 <title>REVISIÓN — ElevatIA × Maderas Ibéricas — Estado y decisiones</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
@@ -815,8 +815,70 @@ html,body{height:auto;overflow:auto}
 </section>
 
 <!-- esperando -->
+<!-- dgii -->
 <section class="slide">
   <div class="marca-lamina">23</div>
+  <div class="eyebrow">Lo nuevo · cómo lo haríamos</div>
+  <span class="chip ok">Investigado y comprobado</span>
+  <h2>Validar el RNC <span class="grad">contra la DGII</span></h2>
+  <p class="lead">Lo investigamos a fondo. <strong>La DGII no tiene API oficial</strong> — pero hay
+    un camino mejor que pagarle a un tercero, y ya lo probamos.</p>
+  <div class="rejilla c2">
+    <div class="tarjeta"><h3>Primero: el dígito verificador</h3>
+      <p>El RNC y la cédula llevan un <strong>dígito de control calculado</strong>. Se comprueba con
+      aritmética, sin consultar nada, al instante. Lo probamos contra los
+      <strong>790.000 registros reales</strong> de la DGII: acierta el <strong>100%</strong>, y
+      rechaza todo número inventado. Resuelve el caso que de verdad pasa por teléfono — un dígito
+      mal entendido.</p></div>
+    <div class="tarjeta"><h3>Después: existencia y estado</h3>
+      <p>La DGII <strong>publica el registro completo</strong> en un archivo descargable y gratuito.
+      Lo bajamos y lo medimos: <strong>789.608 registros</strong>, de los cuales
+      <strong>243.572 empresas activas</strong> y 289.617 cédulas. Trae nombre, actividad y
+      <strong>estado</strong>. Una copia refrescada cada semana responde sin latencia durante la
+      llamada.</p></div>
+  </div>
+  <div class="nota">
+    <b>Lo que no haríamos:</b> consultar a la DGII en vivo mientras el cliente está al teléfono. Si
+    su servidor tarda o está caído, Lucy se queda muda con el cliente esperando. Con la copia local
+    eso no puede pasar. <b>Lo que hay que decidir ustedes:</b> qué hace Lucy cuando el RNC es
+    válido pero está <b>suspendido o dado de baja</b> —son 383.000 casos en el registro, no es
+    raro— y qué pasa con el cliente particular que no tiene RNC.
+  </div>
+</section>
+
+<!-- los otros tres -->
+<section class="slide">
+  <div class="marca-lamina">24</div>
+  <div class="eyebrow">Lo nuevo · cómo lo haríamos</div>
+  <h2>Los otros tres, <span class="grad">y lo que cuestan de verdad</span></h2>
+  <p class="lead">Dos de los tres están más cerca de lo que parece: ya hay trabajo hecho que se
+    reutiliza.</p>
+  <div class="escalera">
+    <div class="peldano" style="border-left-color:#ffc857"><i style="color:#ffc857">Falta un dato, no código</i><b>Aviso al vendedor</b>
+      <span>El envío de correo <b style="color:var(--blanco)">ya está montado y funcionando</b> en
+      el aviso al área. Lo que falta no es programación: es saber
+      <b style="color:var(--blanco)">qué vendedor atiende a cada cliente</b>. Su directorio lista
+      cuatro personas en Ventas, pero no dice cuál lleva a quién.</span></div>
+    <div class="peldano" style="border-left-color:#2ee6a8"><i style="color:#2ee6a8">Ya existe, apagado</i><b>Reporte diario de Lucy</b>
+      <span>Hay un <b style="color:var(--blanco)">reporte diario ya construido</b> que menciona
+      cotizaciones y pedidos, y está apagado. Antes de hacer uno nuevo hay que abrirlo y ver qué le
+      falta. Y el formato se toma prestado del reporte que Clara ya le manda a Angelo, que está
+      resuelto.</span></div>
+    <div class="peldano" style="border-left-color:#08A0F7"><i style="color:#08A0F7">Decisión suya, no técnica</i><b>Unificar los correos</b>
+      <span>En su directorio conviven <i>@maderasibericas.com</i> y <i>@finsawood.com</i>. Cada
+      dominio hay que autorizarlo aparte para que los bots puedan enviar, y un correo desde un
+      dominio sin autorizar <b style="color:var(--blanco)">cae en spam sin avisar</b>. Son dos
+      nombres comerciales: la decisión es de marca. Nosotros solo ponemos el costo
+      encima.</span></div>
+  </div>
+  <div class="nota">
+    En los tres casos, lo que falta no es tiempo de desarrollo: es <b>un dato, una revisión y una
+    decisión</b>. Por eso los ponemos aquí y no en una cotización.
+  </div>
+</section>
+
+<section class="slide">
+  <div class="marca-lamina">25</div>
   <div class="eyebrow">Lo que esperamos de ustedes</div>
   <span class="chip espera">Nada de esto es programación</span>
   <h2>Lo que estamos <span class="grad">esperando recibir</span></h2>
@@ -852,7 +914,7 @@ html,body{height:auto;overflow:auto}
 </section>
 
 <section class="slide">
-  <div class="marca-lamina">24</div>
+  <div class="marca-lamina">26</div>
   <div class="eyebrow">Para cerrar</div>
   <h2>Si salimos de aquí con <span class="grad">esto respondido</span>…</h2>
   <div class="rejilla c3">
