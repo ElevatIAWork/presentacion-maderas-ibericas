@@ -13,7 +13,7 @@
   --navy:#000108; --azul:#08A0F7; --morado:#D917FC; --azul-hondo:#2C3CA7;
   --blanco:#fff; --tenue:rgba(255,255,255,.64); --apagado:rgba(255,255,255,.40);
   --linea:rgba(255,255,255,.10); --vidrio:rgba(255,255,255,.045);
-  --ok:#2ee6a8; --espera:#ffc857; --parado:#ff6b6b;
+  --ok:#2ee6a8; --espera:#ffc857; --parado:#ff6b6b; --alerta:#ff9b9b;
   --grad:linear-gradient(100deg,var(--azul),var(--morado));
   --curva:cubic-bezier(.32,.72,0,1);
   --sans:'Segoe UI Variable Display','Segoe UI',system-ui,-apple-system,'Helvetica Neue',sans-serif;
@@ -145,13 +145,28 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 }
 
 @media print{
-  html,body{background:#fff!important;color:#111!important}
+  /* EN PAPEL SE INVIERTE TODO. El fondo pasa a blanco, asi que el blanco del texto
+     tiene que pasar a tinta — si no, la mitad del documento sale invisible y no se
+     nota hasta que alguien imprime. Se redefinen las variables de una vez en vez de
+     perseguir regla por regla. Los colores de estado tambien se oscurecen: sobre
+     blanco, el verde menta y el ambar no llegan al contraste minimo. */
+  :root{
+    --blanco:#14161c; --tenue:#3d424f; --apagado:#666d7d;
+    --linea:#d7dbe5;  --vidrio:#f6f7fb; --navy:#ffffff;
+    --ok:#0c7a52;     --espera:#8a6200; --parado:#b3261e; --alerta:#b3261e;
+    --azul:#0369a1;   --morado:#9d0fb8;
+  }
+  html,body{background:#fff!important;color:var(--blanco)!important}
+  .campo code{background:#eef0f6}
   body::before,body::after{display:none}
   .slide{page-break-after:always;break-after:page;border-bottom:0;
     padding:16px 22px;max-width:none}
   /* Cuatro secciones se pasaban del alto de la hoja y arrastraban una pagina
      casi vacia. Solo esas se reducen; las demas se imprimen a tamaño completo. */
   .apretada{zoom:.81}
+  /* Estas dos llevan mas texto que las otras y se pasaban igual. Medido
+     imprimiendo de verdad con Chrome, no emulando en pantalla. */
+  .densa-max{zoom:.75}
   .slide:last-of-type{page-break-after:auto;break-after:auto}
   .preg,.tarjeta,.paso,.nota,.campo,.opcion,.columna,.peldano{break-inside:avoid;
     page-break-inside:avoid}
@@ -450,7 +465,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <div class="pregs">
     <div class="preg critica"><span class="cuerpo"><b>6 · La ubicación de la sucursal no le llega al cliente</b>
       <span>Comprobado: cuando Lucy manda la dirección tras un pedido por teléfono,
-      <b style="display:inline;color:#ff9b9b">el mensaje se pierde</b> si el cliente no le escribió
+      <b style="display:inline;color:var(--alerta)">el mensaje se pierde</b> si el cliente no le escribió
       al WhatsApp del negocio en las últimas 24 horas. Una llamada no abre esa ventana.
       <b style="display:inline;color:var(--ok)">Ya lo resolvimos:</b> las cuatro plantillas están
       redactadas y las cargamos nosotros en Meta — están en el <b style="display:inline">anexo</b>.<b class="pide"><em>Lo que necesitamos:</em> que lean los textos y nos digan si el tono está bien. El trámite no les toca.</b></span></span></div>
@@ -476,14 +491,14 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <div class="rejilla c2" style="align-items:start">
     <div>
       <div class="plantilla-fila">
-        <span class="pin" style="background:#08A0F7"></span>
+        <span class="pin" style="background:var(--azul)"></span>
         <div><b>Pedido listo para recoger</b><code>pedido_listo_maderas · al cliente</code>
           <span>Le avisa que ya puede pasar a buscarlo, con la sucursal y un botón
           <i>Cómo llegar</i>. <b style="color:var(--blanco)">Es la que hoy no llega</b> si el
           cliente nunca escribió por WhatsApp.</span></div>
       </div>
       <div class="plantilla-fila">
-        <span class="pin" style="background:#08A0F7"></span>
+        <span class="pin" style="background:var(--azul)"></span>
         <div><b>Datos para retirar el pedido</b><code>retiro_sucursal_maderas · al cliente</code>
           <span>Sale al colgar, justo después del PDF: confirma lo que pidió y dónde se retira.</span></div>
       </div>
@@ -494,7 +509,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
           el motivo y el resumen. Con un botón <i>Yo lo atiendo</i>.</span></div>
       </div>
       <div class="plantilla-fila">
-        <span class="pin" style="background:#ffc857"></span>
+        <span class="pin" style="background:var(--espera)"></span>
         <div><b>Caso ya atendido</b><code>caso_tomado_maderas · al personal</code>
           <span>Cuando alguien toca <i>Yo lo atiendo</i>, avisa a los demás del área para que no
           llamen dos veces al mismo cliente.</span></div>
@@ -604,7 +619,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       alternativa que ustedes mismos plantean, <i>clara@finsawood.com</i>, nos parece más limpia
       —separa el cobro automático del buzón de contabilidad— y no cambia en nada que una persona
       valide las respuestas.
-      <b style="display:inline;color:#ff9b9b">Sin esto hay tres cosas detenidas</b>, no una: Clara no
+      <b style="display:inline;color:var(--alerta)">Sin esto hay tres cosas detenidas</b>, no una: Clara no
       puede escribirle a ningún cliente por correo, Angelo no recibe su reporte del día, y no puede
       salir el respaldo semanal del historial de cobros — que es lo único del bot que no se
       reconstruye solo desde ADM.<b class="pide"><em>Lo que necesitamos:</em> que elijan la dirección, y le pidan a su técnico la cuenta de envío. Nosotros la configuramos.</b></span></span></div>
@@ -628,7 +643,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
       <span>El PDF es perfecto para que lo lea una persona, pero un bot lo lee
       <b style="display:inline">adivinando</b> por dónde cae cada número en la página. El día que
       cambie el formato empieza a leer mal sin avisar, y aquí leer mal significa
-      <b style="display:inline;color:#ff9b9b">reclamarle a un cliente un monto que no es</b>. En
+      <b style="display:inline;color:var(--alerta)">reclamarle a un cliente un monto que no es</b>. En
       Excel cada dato viene con su nombre y el riesgo desaparece.<b class="pide"><em>Lo que necesitamos:</em> un sí o un no. Si su sistema lo exporta, mándennos los dos: el PDF para ustedes y el Excel para el bot.</b></span></span></div>
     <div class="preg critica"><span class="cuerpo"><b>12 · Mejor todavía: que la lista diga solo <i>a quién</i>, no <i>cuánto</i></b>
       <span>Con un archivo semanal, quien pague el martes sigue recibiendo avisos hasta el
@@ -700,32 +715,32 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 
 
 <!-- 14 -->
-<section class="slide apretada">
+<section class="slide apretada densa-max">
   <div class="eyebrow">Proyecto 3 · lo que hay que aprobar</div>
   <h2>Los seis textos <span class="grad">de Clara</span></h2>
   <p class="lead">Esto es lo que Meta tiene que aprobar antes de que Clara pueda escribir.
     <strong>Los cuatro primeros suben de firmeza</strong> según se envejece la deuda; los dos
     últimos existen para no quedar mal con quien sí cumple.</p>
   <div class="escalera">
-    <div class="peldano"><i style="color:#2ee6a8">Día 25 · cordial</i><b>Primer recordatorio</b>
+    <div class="peldano"><i style="color:var(--ok)">Día 25 · cordial</i><b>Primer recordatorio</b>
       <q>Le escribo para recordarle la factura FD-1042 por RD$ 45,000.00, con vencimiento el
       31 de julio.</q>
       <span>Da por hecho que se le pasó. La mayoría paga aquí.</span></div>
-    <div class="peldano" style="border-left-color:#ffc857"><i style="color:#ffc857">Día 30 · directo</i><b>Segundo aviso</b>
+    <div class="peldano" style="border-left-color:var(--espera)"><i style="color:var(--espera)">Día 30 · directo</i><b>Segundo aviso</b>
       <q>La factura FD-1042 por RD$ 45,000.00 venció el 31 de julio y aún figura pendiente en
       nuestro sistema.</q>
       <span>Ya no hay suposición: se constata el hecho.</span></div>
-    <div class="peldano" style="border-left-color:#ff6b6b"><i style="color:#ff6b6b">Día 35–40 · firme</i><b>Tercer aviso</b>
+    <div class="peldano" style="border-left-color:var(--parado)"><i style="color:var(--parado)">Día 35–40 · firme</i><b>Tercer aviso</b>
       <q>Su factura FD-1042 acumula 38 días de vencida y continúa pendiente.</q>
       <span>Pide gestión y ofrece acordar una fecha de pago.</span></div>
-    <div class="peldano" style="border-left-color:#ff6b6b"><i style="color:#ff6b6b">Cada 5 días · sostenido</i><b>Seguimiento</b>
+    <div class="peldano" style="border-left-color:var(--parado)"><i style="color:var(--parado)">Cada 5 días · sostenido</i><b>Seguimiento</b>
       <q>Su balance pendiente es de RD$ 45,000.00 en 3 facturas, con 62 días de vencimiento.</q>
       <span>El que pidió su documento: avisos indefinidos hasta que se confirme el cobro.</span></div>
-    <div class="peldano" style="border-left-color:#08A0F7"><i style="color:#08A0F7">El día prometido</i><b>Recordatorio amable</b>
+    <div class="peldano" style="border-left-color:var(--azul)"><i style="color:var(--azul)">El día prometido</i><b>Recordatorio amable</b>
       <q>Quedamos en que el pago de la factura FD-1042 se realizaría hoy, 20 de septiembre.</q>
       <span><b style="color:var(--blanco)">Sin este, el cliente que prometió pagar recibe un
       reclamo firme el día que está cumpliendo.</b></span></div>
-    <div class="peldano" style="border-left-color:#2ee6a8"><i style="color:#2ee6a8">Al confirmar el pago</i><b>Acuse</b>
+    <div class="peldano" style="border-left-color:var(--ok)"><i style="color:var(--ok)">Al confirmar el pago</i><b>Acuse</b>
       <q>Recibimos su pago de RD$ 45,000.00. Ya pasó a verificación de contabilidad.</q>
       <span>Cierra el ciclo. Es lo único que el cliente recuerda del cobro.</span></div>
   </div>
@@ -869,7 +884,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
     <div class="peldano"><i>Lucy · gerencia</i><b>Recap y reporte diario</b>
       <span>Un resumen al cierre de cada día con lo que pasó en las llamadas y los chats. Es el
       equivalente al reporte que ya tiene Clara para Angelo.</span></div>
-    <div class="peldano" style="border-left-color:#ffc857"><i style="color:#ffc857">Clara · hecho, falta elegir</i><b>Cobrar solo dos días por semana</b>
+    <div class="peldano" style="border-left-color:var(--espera)"><i style="color:var(--espera)">Clara · hecho, falta elegir</i><b>Cobrar solo dos días por semana</b>
       <span>Ya está cambiado: Clara pasó de trabajar los cinco días hábiles a trabajar
       <b style="color:var(--blanco)">solo dos</b>, de 8:00 a 5:00 y respetando los feriados.
       Mientras tanto quedó en <b style="color:var(--blanco)">martes y jueves</b>, que reparte
@@ -887,7 +902,7 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
 
 <!-- esperando -->
 <!-- dgii -->
-<section class="slide densa apretada">
+<section class="slide densa apretada densa-max">
   <div class="eyebrow">Lo nuevo &middot; c&oacute;mo lo har&iacute;amos</div>
   <span class="chip ok">Investigado y comprobado</span>
   <h2>Validar el RNC <span class="grad">contra la DGII</span></h2>
@@ -952,17 +967,17 @@ ul.lista li strong{color:var(--blanco);font-weight:600}
   <p class="lead">Dos de los tres están más cerca de lo que parece: ya hay trabajo hecho que se
     reutiliza.</p>
   <div class="escalera">
-    <div class="peldano" style="border-left-color:#ffc857"><i style="color:#ffc857">Falta un dato, no código</i><b>Aviso al vendedor</b>
+    <div class="peldano" style="border-left-color:var(--espera)"><i style="color:var(--espera)">Falta un dato, no código</i><b>Aviso al vendedor</b>
       <span>El envío de correo <b style="color:var(--blanco)">ya está montado y funcionando</b> en
       el aviso al área. Lo que falta no es programación: es saber
       <b style="color:var(--blanco)">qué vendedor atiende a cada cliente</b>. Su directorio lista
       cuatro personas en Ventas, pero no dice cuál lleva a quién.</span></div>
-    <div class="peldano" style="border-left-color:#2ee6a8"><i style="color:#2ee6a8">Ya existe, apagado</i><b>Reporte diario de Lucy</b>
+    <div class="peldano" style="border-left-color:var(--ok)"><i style="color:var(--ok)">Ya existe, apagado</i><b>Reporte diario de Lucy</b>
       <span>Hay un <b style="color:var(--blanco)">reporte diario ya construido</b> que menciona
       cotizaciones y pedidos, y está apagado. Antes de hacer uno nuevo hay que abrirlo y ver qué le
       falta. Y el formato se toma prestado del reporte que Clara ya le manda a Angelo, que está
       resuelto.</span></div>
-    <div class="peldano" style="border-left-color:#08A0F7"><i style="color:#08A0F7">Decisión suya, no técnica</i><b>Unificar los correos</b>
+    <div class="peldano" style="border-left-color:var(--azul)"><i style="color:var(--azul)">Decisión suya, no técnica</i><b>Unificar los correos</b>
       <span>En su directorio conviven <i>@maderasibericas.com</i> y <i>@finsawood.com</i>. Cada
       dominio hay que autorizarlo aparte para que los bots puedan enviar, y un correo desde un
       dominio sin autorizar <b style="color:var(--blanco)">cae en spam sin avisar</b>. Son dos
